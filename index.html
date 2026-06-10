@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2026 World Cup Draft</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #131a33;
+    --panel-2: #1a2347;
+    --line: #243064;
+    --ink: #e9ecf8;
+    --muted: #98a2c7;
+    --accent: #00d4a6;
+    --accent-2: #5b8cff;
+    --danger: #ff6b6b;
+    --warn: #ffb547;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif; }
+  header { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: linear-gradient(180deg, #0d1430, #0b1020); position: sticky; top: 0; z-index: 10; }
+  header h1 { margin: 0; font-size: 20px; letter-spacing: .2px; }
+  header h1 .sub { color: var(--muted); font-weight: 400; margin-left: 8px; font-size: 14px; }
+  .btn { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+  .btn:hover { border-color: var(--accent-2); }
+  .btn.primary { background: var(--accent); color: #062018; border-color: transparent; font-weight: 600; }
+  .btn.primary:hover { filter: brightness(1.05); }
+  .btn.danger { color: var(--danger); }
+  main { display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px; padding: 18px 22px; max-width: 1400px; margin: 0 auto; }
+  @media (max-width: 980px) { main { grid-template-columns: 1fr; } }
+  section.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  section.card > .head { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  section.card > .head h2 { margin: 0; font-size: 15px; letter-spacing: .3px; text-transform: uppercase; color: var(--muted); }
+  section.card > .body { padding: 12px 14px; }
+
+  /* Setup */
+  .setup { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .setup .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .setup label { color: var(--muted); font-size: 13px; }
+  .setup input[type="text"], .setup input[type="number"] {
+    background: var(--panel-2); border: 1px solid var(--line); color: var(--ink); padding: 8px 10px; border-radius: 8px; font-size: 14px; min-width: 180px;
+  }
+  .player-inputs { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+
+  /* Available teams */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filters input { background: var(--panel-2); border: 1px solid var(--line); color: var(--ink); padding: 7px 10px; border-radius: 8px; font-size: 13px; min-width: 200px; }
+  .teams { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; max-height: 70vh; overflow: auto; padding-right: 4px; }
+  .team { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; cursor: pointer; transition: transform .05s ease, border-color .1s ease; }
+  .team:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .team .name { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .team .flag { font-size: 20px; line-height: 1; }
+  .team .rank { color: var(--muted); font-size: 12px; background: #0b1230; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); }
+  .team .conf { color: var(--muted); font-size: 11px; margin-left: 6px; }
+
+  /* Current pick */
+  .pickbar { padding: 12px 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: linear-gradient(90deg, rgba(0,212,166,.10), rgba(91,140,255,.10)); border-bottom: 1px solid var(--line); }
+  .pickbar .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  .pickbar .who { font-size: 18px; font-weight: 700; color: var(--accent); }
+  .pickbar .pickno { color: var(--muted); font-size: 13px; }
+  .pickbar.done .who { color: var(--warn); }
+
+  /* Rosters */
+  .rosters { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .roster { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+  .roster h3 { margin: 0 0 6px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; }
+  .roster.current { outline: 2px solid var(--accent); }
+  .roster ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .roster li { font-size: 13px; padding: 6px 8px; background: #0b1230; border: 1px solid var(--line); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .roster li .meta { color: var(--muted); font-size: 11px; }
+  .roster .count { color: var(--muted); font-size: 12px; font-weight: 400; }
+
+  /* History */
+  .history { max-height: 30vh; overflow: auto; }
+  .history table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .history th, .history td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+  .history th { color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+  .history tr:last-child td { border-bottom: none; }
+  .undo { color: var(--danger); cursor: pointer; background: none; border: none; font-size: 12px; }
+
+  .empty { color: var(--muted); font-size: 13px; padding: 18px; text-align: center; }
+  .hidden { display: none !important; }
+  .pill { display: inline-block; background: var(--panel-2); border: 1px solid var(--line); color: var(--muted); padding: 3px 8px; border-radius: 999px; font-size: 11px; margin-left: 6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>2026 FIFA World Cup Draft <span class="sub">snake format · 48 teams</span></h1>
+  <div>
+    <button class="btn" id="exportBtn" title="Copy results to clipboard">Export</button>
+    <button class="btn danger" id="resetBtn">Reset Draft</button>
+  </div>
+</header>
+
+<main>
+  <section class="card" id="setupCard">
+    <div class="head"><h2>Setup</h2></div>
+    <div class="body setup">
+      <div class="row">
+        <label for="numPlayers">Number of players:</label>
+        <input type="number" id="numPlayers" min="6" max="8" value="6" />
+        <label for="rounds">Rounds (teams per player):</label>
+        <input type="number" id="rounds" min="1" max="8" value="6" />
+      </div>
+      <div class="player-inputs" id="playerInputs"></div>
+      <div class="row">
+        <button class="btn primary" id="startBtn">Start Draft</button>
+        <span class="pill">Snake order: P1→P6, P6→P1, repeat</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card hidden" id="pickCard">
+    <div class="pickbar" id="pickbar">
+      <span class="label">On the clock</span>
+      <span class="who" id="currentPlayer">—</span>
+      <span class="pickno" id="pickInfo">—</span>
+    </div>
+    <div class="head">
+      <h2>Available Teams <span class="pill" id="availableCount">48</span></h2>
+      <div class="filters">
+        <input type="search" id="search" placeholder="Search team or confederation…" />
+      </div>
+    </div>
+    <div class="body">
+      <div class="teams" id="teams"></div>
+    </div>
+  </section>
+
+  <section class="card hidden" id="rosterCard">
+    <div class="head"><h2>Rosters</h2></div>
+    <div class="body">
+      <div class="rosters" id="rosters"></div>
+    </div>
+  </section>
+
+  <section class="card hidden" id="historyCard">
+    <div class="head"><h2>Pick History</h2></div>
+    <div class="body history">
+      <table>
+        <thead><tr><th>#</th><th>Round</th><th>Player</th><th>Team</th><th></th></tr></thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+      <div class="empty" id="historyEmpty">No picks yet.</div>
+    </div>
+  </section>
+</main>
+
+<script>
+// 2026 FIFA World Cup — 48 qualified teams with approximate FIFA rankings.
+// Edit ranking numbers here if you want different ordering — UI sorts by rank.
+const TEAMS = [
+  { name: "Argentina",      flag: "🇦🇷", rank: 1,  conf: "CONMEBOL" },
+  { name: "Spain",          flag: "🇪🇸", rank: 2,  conf: "UEFA" },
+  { name: "France",         flag: "🇫🇷", rank: 3,  conf: "UEFA" },
+  { name: "England",        flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", rank: 4,  conf: "UEFA" },
+  { name: "Brazil",         flag: "🇧🇷", rank: 5,  conf: "CONMEBOL" },
+  { name: "Portugal",       flag: "🇵🇹", rank: 6,  conf: "UEFA" },
+  { name: "Netherlands",    flag: "🇳🇱", rank: 7,  conf: "UEFA" },
+  { name: "Belgium",        flag: "🇧🇪", rank: 8,  conf: "UEFA" },
+  { name: "Italy",          flag: "🇮🇹", rank: 9,  conf: "UEFA" },
+  { name: "Croatia",        flag: "🇭🇷", rank: 10, conf: "UEFA" },
+  { name: "Germany",        flag: "🇩🇪", rank: 11, conf: "UEFA" },
+  { name: "Morocco",        flag: "🇲🇦", rank: 12, conf: "CAF" },
+  { name: "Colombia",       flag: "🇨🇴", rank: 13, conf: "CONMEBOL" },
+  { name: "Uruguay",        flag: "🇺🇾", rank: 14, conf: "CONMEBOL" },
+  { name: "Switzerland",    flag: "🇨🇭", rank: 15, conf: "UEFA" },
+  { name: "USA",            flag: "🇺🇸", rank: 16, conf: "CONCACAF (host)" },
+  { name: "Mexico",         flag: "🇲🇽", rank: 17, conf: "CONCACAF (host)" },
+  { name: "Japan",          flag: "🇯🇵", rank: 18, conf: "AFC" },
+  { name: "Senegal",        flag: "🇸🇳", rank: 19, conf: "CAF" },
+  { name: "Iran",           flag: "🇮🇷", rank: 20, conf: "AFC" },
+  { name: "Denmark",        flag: "🇩🇰", rank: 21, conf: "UEFA" },
+  { name: "South Korea",    flag: "🇰🇷", rank: 22, conf: "AFC" },
+  { name: "Ecuador",        flag: "🇪🇨", rank: 23, conf: "CONMEBOL" },
+  { name: "Austria",        flag: "🇦🇹", rank: 24, conf: "UEFA" },
+  { name: "Australia",      flag: "🇦🇺", rank: 25, conf: "AFC" },
+  { name: "Egypt",          flag: "🇪🇬", rank: 26, conf: "CAF" },
+  { name: "Poland",          flag: "🇵🇱", rank: 27, conf: "UEFA" },
+  { name: "Algeria",        flag: "🇩🇿", rank: 28, conf: "CAF" },
+  { name: "Norway",         flag: "🇳🇴", rank: 29, conf: "UEFA" },
+  { name: "Türkiye",        flag: "🇹🇷", rank: 30, conf: "UEFA" },
+  { name: "Czechia",        flag: "🇨🇿", rank: 31, conf: "UEFA" },
+  { name: "Tunisia",        flag: "🇹🇳", rank: 32, conf: "CAF" },
+  { name: "Canada",         flag: "🇨🇦", rank: 33, conf: "CONCACAF (host)" },
+  { name: "Nigeria",        flag: "🇳🇬", rank: 34, conf: "CAF" },
+  { name: "Saudi Arabia",   flag: "🇸🇦", rank: 35, conf: "AFC" },
+  { name: "Ivory Coast",    flag: "🇨🇮", rank: 36, conf: "CAF" },
+  { name: "Cameroon",       flag: "🇨🇲", rank: 37, conf: "CAF" },
+  { name: "Paraguay",       flag: "🇵🇾", rank: 38, conf: "CONMEBOL" },
+  { name: "Ghana",          flag: "🇬🇭", rank: 39, conf: "CAF" },
+  { name: "Panama",         flag: "🇵🇦", rank: 40, conf: "CONCACAF" },
+  { name: "Iraq",           flag: "🇮🇶", rank: 41, conf: "AFC" },
+  { name: "Costa Rica",     flag: "🇨🇷", rank: 42, conf: "CONCACAF" },
+  { name: "Uzbekistan",     flag: "🇺🇿", rank: 43, conf: "AFC" },
+  { name: "Jamaica",        flag: "🇯🇲", rank: 44, conf: "CONCACAF" },
+  { name: "South Africa",   flag: "🇿🇦", rank: 45, conf: "CAF" },
+  { name: "Jordan",         flag: "🇯🇴", rank: 46, conf: "AFC" },
+  { name: "Bolivia",        flag: "🇧🇴", rank: 47, conf: "CONMEBOL" },
+  { name: "New Zealand",    flag: "🇳🇿", rank: 48, conf: "OFC" },
+];
+
+const STORAGE_KEY = "wc2026-draft-v1";
+
+const state = {
+  players: [],          // [{ name }]
+  rounds: 6,
+  started: false,
+  picks: [],            // [{ teamName, playerIdx, round, overall }]
+  availableNames: new Set(TEAMS.map(t => t.name)),
+};
+
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+// ---------- persistence ----------
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    players: state.players,
+    rounds: state.rounds,
+    started: state.started,
+    picks: state.picks,
+  }));
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    state.players = data.players || [];
+    state.rounds = data.rounds || 6;
+    state.started = !!data.started;
+    state.picks = data.picks || [];
+    state.availableNames = new Set(TEAMS.map(t => t.name));
+    for (const p of state.picks) state.availableNames.delete(p.teamName);
+  } catch (e) {}
+}
+
+// ---------- setup ----------
+function renderPlayerInputs() {
+  const n = clamp(parseInt($("#numPlayers").value, 10) || 6, 6, 8);
+  $("#numPlayers").value = n;
+  const wrap = $("#playerInputs");
+  const existing = $$("#playerInputs input").map(i => i.value);
+  wrap.innerHTML = "";
+  for (let i = 0; i < n; i++) {
+    const div = document.createElement("div");
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = `Player ${i + 1} name`;
+    input.value = existing[i] || (state.players[i]?.name ?? "");
+    input.style.cssText = "background:var(--panel-2);border:1px solid var(--line);color:var(--ink);padding:8px 10px;border-radius:8px;font-size:14px;width:100%;";
+    div.appendChild(input);
+    wrap.appendChild(div);
+  }
+}
+
+function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
+
+function startDraft() {
+  const names = $$("#playerInputs input").map(i => i.value.trim()).filter(Boolean);
+  const n = clamp(parseInt($("#numPlayers").value, 10) || 6, 6, 8);
+  if (names.length !== n) {
+    alert(`Please enter all ${n} player names.`);
+    return;
+  }
+  state.players = names.map(name => ({ name }));
+  state.rounds = clamp(parseInt($("#rounds").value, 10) || 6, 1, 8);
+  state.started = true;
+  state.picks = [];
+  state.availableNames = new Set(TEAMS.map(t => t.name));
+  save();
+  render();
+}
+
+function resetDraft() {
+  if (!confirm("Reset the entire draft? This clears all picks.")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state.players = [];
+  state.rounds = 6;
+  state.started = false;
+  state.picks = [];
+  state.availableNames = new Set(TEAMS.map(t => t.name));
+  $("#numPlayers").value = 6;
+  $("#rounds").value = 6;
+  renderPlayerInputs();
+  render();
+}
+
+// ---------- draft logic ----------
+function totalPicks() { return state.players.length * state.rounds; }
+
+function pickToSlot(overall) {
+  // overall is 0-indexed
+  const n = state.players.length;
+  const round = Math.floor(overall / n); // 0-indexed
+  const within = overall % n;
+  const playerIdx = (round % 2 === 0) ? within : (n - 1 - within);
+  return { round: round + 1, playerIdx };
+}
+
+function nextSlot() {
+  if (state.picks.length >= totalPicks()) return null;
+  return pickToSlot(state.picks.length);
+}
+
+function draftTeam(teamName) {
+  const slot = nextSlot();
+  if (!slot) return;
+  if (!state.availableNames.has(teamName)) return;
+  state.availableNames.delete(teamName);
+  state.picks.push({
+    teamName,
+    playerIdx: slot.playerIdx,
+    round: slot.round,
+    overall: state.picks.length + 1,
+  });
+  save();
+  render();
+}
+
+function undoLast() {
+  const last = state.picks.pop();
+  if (!last) return;
+  state.availableNames.add(last.teamName);
+  save();
+  render();
+}
+
+// ---------- rendering ----------
+function teamByName(name) { return TEAMS.find(t => t.name === name); }
+
+function renderPickbar() {
+  const slot = nextSlot();
+  const bar = $("#pickbar");
+  if (!slot) {
+    bar.classList.add("done");
+    $("#currentPlayer").textContent = "Draft complete 🏆";
+    $("#pickInfo").textContent = `${state.picks.length} picks made`;
+    return;
+  }
+  bar.classList.remove("done");
+  const p = state.players[slot.playerIdx];
+  $("#currentPlayer").textContent = p.name;
+  $("#pickInfo").textContent = `Round ${slot.round} of ${state.rounds} · Pick ${state.picks.length + 1} of ${totalPicks()}`;
+}
+
+function renderTeams() {
+  const q = ($("#search").value || "").trim().toLowerCase();
+  const list = TEAMS
+    .filter(t => state.availableNames.has(t.name))
+    .filter(t => !q || t.name.toLowerCase().includes(q) || t.conf.toLowerCase().includes(q))
+    .sort((a, b) => a.rank - b.rank);
+  $("#availableCount").textContent = state.availableNames.size;
+  const wrap = $("#teams");
+  wrap.innerHTML = "";
+  if (!list.length) {
+    const d = document.createElement("div");
+    d.className = "empty";
+    d.textContent = q ? "No teams match your search." : "All teams have been drafted.";
+    wrap.appendChild(d);
+    return;
+  }
+  for (const t of list) {
+    const el = document.createElement("button");
+    el.className = "team";
+    el.title = `Draft ${t.name} for ${currentPlayerName() || "—"}`;
+    el.innerHTML = `
+      <span class="name"><span class="flag">${t.flag}</span> ${t.name}<span class="conf">${t.conf}</span></span>
+      <span class="rank">#${t.rank}</span>
+    `;
+    el.addEventListener("click", () => draftTeam(t.name));
+    wrap.appendChild(el);
+  }
+}
+
+function currentPlayerName() {
+  const slot = nextSlot();
+  return slot ? state.players[slot.playerIdx].name : null;
+}
+
+function renderRosters() {
+  const wrap = $("#rosters");
+  wrap.innerHTML = "";
+  const slot = nextSlot();
+  state.players.forEach((p, idx) => {
+    const card = document.createElement("div");
+    card.className = "roster" + (slot && slot.playerIdx === idx ? " current" : "");
+    const picks = state.picks.filter(pk => pk.playerIdx === idx);
+    card.innerHTML = `
+      <h3>${escapeHtml(p.name)} <span class="count">${picks.length}/${state.rounds}</span></h3>
+      <ul></ul>
+    `;
+    const ul = card.querySelector("ul");
+    if (!picks.length) {
+      const li = document.createElement("li");
+      li.style.color = "var(--muted)";
+      li.textContent = "— no picks yet —";
+      ul.appendChild(li);
+    } else {
+      picks.forEach(pk => {
+        const t = teamByName(pk.teamName);
+        const li = document.createElement("li");
+        li.innerHTML = `<span>${t.flag} ${t.name}</span><span class="meta">R${pk.round} · #${t.rank}</span>`;
+        ul.appendChild(li);
+      });
+    }
+    wrap.appendChild(card);
+  });
+}
+
+function renderHistory() {
+  const tbody = $("#historyBody");
+  tbody.innerHTML = "";
+  $("#historyEmpty").style.display = state.picks.length ? "none" : "block";
+  state.picks.slice().reverse().forEach((pk, i) => {
+    const isLast = i === 0;
+    const t = teamByName(pk.teamName);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${pk.overall}</td>
+      <td>R${pk.round}</td>
+      <td>${escapeHtml(state.players[pk.playerIdx].name)}</td>
+      <td>${t.flag} ${t.name} <span style="color:var(--muted)">#${t.rank}</span></td>
+      <td>${isLast ? '<button class="undo" id="undoBtn">undo</button>' : ''}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  const undo = $("#undoBtn");
+  if (undo) undo.addEventListener("click", undoLast);
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function render() {
+  if (!state.started) {
+    $("#setupCard").classList.remove("hidden");
+    $("#pickCard").classList.add("hidden");
+    $("#rosterCard").classList.add("hidden");
+    $("#historyCard").classList.add("hidden");
+    renderPlayerInputs();
+    return;
+  }
+  $("#setupCard").classList.add("hidden");
+  $("#pickCard").classList.remove("hidden");
+  $("#rosterCard").classList.remove("hidden");
+  $("#historyCard").classList.remove("hidden");
+  renderPickbar();
+  renderTeams();
+  renderRosters();
+  renderHistory();
+}
+
+function exportResults() {
+  const lines = [];
+  lines.push(`2026 World Cup Draft Results`);
+  lines.push(`Snake draft · ${state.players.length} players · ${state.rounds} rounds`);
+  lines.push("");
+  state.players.forEach((p, idx) => {
+    const picks = state.picks.filter(pk => pk.playerIdx === idx);
+    lines.push(`${p.name}:`);
+    picks.forEach(pk => {
+      const t = teamByName(pk.teamName);
+      lines.push(`  R${pk.round}  ${t.name}  (#${t.rank}, ${t.conf})`);
+    });
+    lines.push("");
+  });
+  const text = lines.join("\n");
+  navigator.clipboard?.writeText(text).then(
+    () => alert("Results copied to clipboard."),
+    () => { prompt("Copy results:", text); }
+  );
+}
+
+// ---------- wire up ----------
+$("#numPlayers").addEventListener("input", renderPlayerInputs);
+$("#startBtn").addEventListener("click", startDraft);
+$("#resetBtn").addEventListener("click", resetDraft);
+$("#exportBtn").addEventListener("click", exportResults);
+$("#search").addEventListener("input", renderTeams);
+
+load();
+renderPlayerInputs();
+render();
+</script>
+</body>
+</html>
