@@ -1,82 +1,81 @@
 {
-  "placeholder": true,
   "players": [
     {
-      "name": "Player 1",
+      "name": "Felipe",
       "teams": [
         "Spain",
-        "Colombia",
-        "Senegal",
+        "Morocco",
+        "Mexico",
         "South Korea",
-        "Australia",
-        "DR Congo",
-        "Uzbekistan",
-        "New Zealand"
-      ]
-    },
-    {
-      "name": "Player 2",
-      "teams": [
-        "France",
-        "Belgium",
-        "Croatia",
-        "Austria",
-        "Algeria",
-        "Tunisia",
-        "Qatar",
+        "Sweden",
+        "Czechia",
+        "South Africa",
         "Haiti"
       ]
     },
     {
-      "name": "Player 3",
+      "name": "Gator",
       "teams": [
-        "Argentina",
-        "Norway",
-        "Japan",
-        "Ecuador",
-        "Egypt",
-        "Scotland",
-        "Iraq",
-        "Curaçao"
-      ]
-    },
-    {
-      "name": "Player 4",
-      "teams": [
-        "England",
-        "Morocco",
-        "Mexico",
-        "Türkiye",
-        "Canada",
-        "Czechia",
-        "South Africa",
-        "Ghana"
-      ]
-    },
-    {
-      "name": "Player 5",
-      "teams": [
-        "Brazil",
+        "France",
         "Netherlands",
-        "USA",
-        "Iran",
-        "Panama",
-        "Paraguay",
-        "Saudi Arabia",
+        "Belgium",
+        "Ecuador",
+        "Austria",
+        "Tunisia",
+        "DR Congo",
         "Cape Verde"
       ]
     },
     {
-      "name": "Player 6",
+      "name": "Rony",
       "teams": [
         "Portugal",
-        "Germany",
+        "Norway",
+        "Japan",
+        "Türkiye",
+        "Egypt",
+        "Panama",
+        "Saudi Arabia",
+        "Curaçao"
+      ]
+    },
+    {
+      "name": "Tigre",
+      "teams": [
+        "Colombia",
         "Uruguay",
+        "Croatia",
         "Switzerland",
-        "Ivory Coast",
-        "Sweden",
-        "Jordan",
+        "Paraguay",
+        "Iran",
+        "New Zealand",
         "Bosnia and Herzegovina"
+      ]
+    },
+    {
+      "name": "Mickey",
+      "teams": [
+        "Brazil",
+        "Germany",
+        "Canada",
+        "USA",
+        "Australia",
+        "Algeria",
+        "Iraq",
+        "Uzbekistan"
+      ]
+    },
+    {
+      "name": "Andy",
+      "teams": [
+        "Argentina",
+        "England",
+        "Senegal",
+        "Ivory Coast",
+        "Scotland",
+        "Ghana",
+        "Jordan",
+        "Qatar"
       ]
     }
   ]
