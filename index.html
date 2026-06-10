@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>2026 World Cup Draft</title>
-<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<title>2026 World Cup Draft — Standings</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏆</text></svg>" />
 <style>
   :root {
     --bg: #0b1020;
@@ -17,1037 +17,429 @@
     --accent-2: #5b8cff;
     --danger: #ff6b6b;
     --warn: #ffb547;
+    --gold: #ffd166;
+    --silver: #c7d0e8;
+    --bronze: #e0a370;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif; }
-  header { padding: 16px 22px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: linear-gradient(180deg, #0d1430, #0b1020); position: sticky; top: 0; z-index: 10; }
-  header h1 { margin: 0; font-size: 19px; letter-spacing: .2px; }
+  header { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: linear-gradient(180deg, #0d1430, #0b1020); position: sticky; top: 0; z-index: 10; }
+  header h1 { margin: 0; font-size: 18px; letter-spacing: .2px; }
   header h1 .sub { color: var(--muted); font-weight: 400; margin-left: 8px; font-size: 13px; }
   .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .btn { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; }
-  .btn:hover { border-color: var(--accent-2); }
-  .btn:disabled { opacity: .5; cursor: not-allowed; }
-  .btn.primary { background: var(--accent); color: #062018; border-color: transparent; font-weight: 600; }
-  .btn.primary:hover { filter: brightness(1.05); }
-  .btn.danger { color: var(--danger); }
   .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 12px; background: var(--panel-2); border: 1px solid var(--line); color: var(--muted); }
-  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
-  .badge.online .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
-  .badge.offline .dot { background: var(--danger); }
-  main { padding: 18px 22px; max-width: 1400px; margin: 0 auto; }
-  .grid { display: grid; gap: 18px; }
-  .two-col { grid-template-columns: 1.1fr 1fr; }
-  @media (max-width: 980px) { .two-col { grid-template-columns: 1fr; } }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  a.btn { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); padding: 6px 11px; border-radius: 8px; cursor: pointer; font-size: 13px; text-decoration: none; }
+  a.btn:hover { border-color: var(--accent-2); }
+  main { padding: 16px 18px 60px; max-width: 980px; margin: 0 auto; display: grid; gap: 18px; }
   section.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-  section.card > .head { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  section.card > .head h2 { margin: 0; font-size: 14px; letter-spacing: .4px; text-transform: uppercase; color: var(--muted); }
-  section.card > .body { padding: 14px 16px; }
-
-  /* Lobby (mode picker) */
-  .mode-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  @media (max-width: 760px) { .mode-picker { grid-template-columns: 1fr; } }
-  .mode-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 18px; cursor: pointer; text-align: left; color: var(--ink); transition: border-color .12s ease, transform .05s ease; }
-  .mode-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .mode-card h3 { margin: 0 0 6px; font-size: 17px; }
-  .mode-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
-  .mode-card .tag { display: inline-block; margin-top: 10px; font-size: 11px; color: var(--accent); letter-spacing: .4px; text-transform: uppercase; }
-
-  /* Setup */
-  .setup { display: grid; grid-template-columns: 1fr; gap: 10px; }
-  .setup .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .setup label { color: var(--muted); font-size: 13px; }
-  input[type="text"], input[type="number"], input[type="search"] {
-    background: var(--panel-2); border: 1px solid var(--line); color: var(--ink); padding: 8px 10px; border-radius: 8px; font-size: 14px; min-width: 180px;
-  }
-  .player-inputs { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
-
-  /* Room code display */
-  .room-block { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 14px; background: linear-gradient(90deg, rgba(0,212,166,.10), rgba(91,140,255,.10)); border: 1px dashed var(--line); border-radius: 12px; }
-  .room-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 32px; font-weight: 700; letter-spacing: 6px; color: var(--accent); user-select: all; }
-  .room-block .meta { color: var(--muted); font-size: 13px; }
-
-  /* Seat list (host lobby) */
-  .seats { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
-  .seat { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
-  .seat .name { font-weight: 600; }
-  .seat .status { font-size: 12px; color: var(--muted); }
-  .seat.claimed { border-color: var(--accent); }
-  .seat.claimed .status { color: var(--accent); }
-  .seat.you { outline: 1px solid var(--accent-2); }
-
-  /* Available teams */
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
-  .teams { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; max-height: 70vh; overflow: auto; padding-right: 4px; }
-  .team { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; cursor: pointer; transition: transform .05s ease, border-color .1s ease; color: inherit; text-align: left; font: inherit; }
-  .team:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .team:disabled { cursor: not-allowed; opacity: .55; }
-  .team:disabled:hover { border-color: var(--line); transform: none; }
-  .team .name { display: flex; align-items: center; gap: 10px; font-size: 14px; }
-  .team .flag { font-size: 20px; line-height: 1; }
-  .team .rank { color: var(--muted); font-size: 12px; background: #0b1230; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); }
-  .team .conf { color: var(--muted); font-size: 11px; margin-left: 6px; }
-
-  /* Current pick */
-  .pickbar { padding: 12px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: linear-gradient(90deg, rgba(0,212,166,.10), rgba(91,140,255,.10)); border-bottom: 1px solid var(--line); }
-  .pickbar .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
-  .pickbar .who { font-size: 18px; font-weight: 700; color: var(--accent); }
-  .pickbar .pickno { color: var(--muted); font-size: 13px; }
-  .pickbar.done .who { color: var(--warn); }
-  .pickbar.mine .who::after { content: " — you're up"; color: var(--ink); font-weight: 500; font-size: 14px; margin-left: 6px; }
-
-  /* Rosters */
-  .rosters { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
-  .roster { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
-  .roster h3 { margin: 0 0 6px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; }
-  .roster.current { outline: 2px solid var(--accent); }
-  .roster.you { box-shadow: inset 0 0 0 1px var(--accent-2); }
-  .roster ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
-  .roster li { font-size: 13px; padding: 6px 8px; background: #0b1230; border: 1px solid var(--line); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-  .roster li .meta { color: var(--muted); font-size: 11px; }
-  .roster .count { color: var(--muted); font-size: 12px; font-weight: 400; }
-  .roster .conn { font-size: 11px; }
-  .roster .conn.online { color: var(--accent); }
-  .roster .conn.offline { color: var(--muted); }
-
-  /* History */
-  .history { max-height: 30vh; overflow: auto; }
-  .history table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .history th, .history td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; }
-  .history th { color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
-  .history tr:last-child td { border-bottom: none; }
-  .undo { color: var(--danger); cursor: pointer; background: none; border: none; font-size: 12px; }
-
-  .empty { color: var(--muted); font-size: 13px; padding: 18px; text-align: center; }
+  section.card > .head { padding: 13px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  section.card > .head h2 { margin: 0; font-size: 13px; letter-spacing: .4px; text-transform: uppercase; color: var(--muted); }
+  section.card > .body { padding: 12px; }
+  .banner { background: linear-gradient(90deg, rgba(255,181,71,.14), rgba(255,107,107,.10)); border: 1px solid rgba(255,181,71,.4); color: var(--warn); border-radius: 12px; padding: 10px 14px; font-size: 13px; }
   .hidden { display: none !important; }
-  .pill { display: inline-block; background: var(--panel-2); border: 1px solid var(--line); color: var(--muted); padding: 3px 8px; border-radius: 999px; font-size: 11px; margin-left: 6px; }
-  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--panel-2); border: 1px solid var(--line); color: var(--ink); padding: 10px 16px; border-radius: 10px; font-size: 14px; z-index: 50; opacity: 0; transition: opacity .15s ease; pointer-events: none; }
-  .toast.show { opacity: 1; }
-  .url-display { font-family: ui-monospace, monospace; font-size: 12px; color: var(--muted); word-break: break-all; }
+
+  /* ---------- Leaderboard ---------- */
+  #leaderboard { display: flex; flex-direction: column; gap: 8px; }
+  .lb-row { background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; will-change: transform; }
+  .lb-row.p1 { border-color: rgba(255,209,102,.55); }
+  .lb-main { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; background: none; border: none; color: inherit; font: inherit; cursor: pointer; text-align: left; }
+  .lb-main:hover { background: rgba(91,140,255,.06); }
+  .pos { flex: 0 0 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; background: #0b1230; border: 1px solid var(--line); color: var(--muted); }
+  .p1 .pos { background: rgba(255,209,102,.15); border-color: var(--gold); color: var(--gold); }
+  .p2 .pos { border-color: var(--silver); color: var(--silver); }
+  .p3 .pos { border-color: var(--bronze); color: var(--bronze); }
+  .who { flex: 1 1 auto; min-width: 0; }
+  .pname { font-weight: 700; font-size: 16px; }
+  .psub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .today-pill { font-size: 12px; color: var(--accent); background: rgba(0,212,166,.10); border: 1px solid rgba(0,212,166,.35); padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+  .live-pill { font-size: 12px; color: var(--warn); background: rgba(255,181,71,.10); border: 1px solid rgba(255,181,71,.4); padding: 3px 8px; border-radius: 999px; white-space: nowrap; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .55; } }
+  .total { font-size: 24px; font-weight: 800; min-width: 44px; text-align: right; font-variant-numeric: tabular-nums; }
+  .chev { color: var(--muted); transition: transform .15s ease; font-size: 12px; }
+  .lb-row.open .chev { transform: rotate(180deg); }
+  .lb-detail { display: none; border-top: 1px solid var(--line); padding: 10px 12px; gap: 8px; }
+  .lb-row.open .lb-detail { display: grid; }
+  .tm { background: #0b1230; border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; }
+  .tm-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; font-weight: 600; }
+  .tm-head .chip { font-weight: 400; }
+  .tm-pts { margin-left: auto; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--accent); }
+  .tm-pts.zero { color: var(--muted); }
+  .tm-matches { margin-top: 7px; display: grid; gap: 4px; }
+  .tm-m { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; }
+  .tm-m .res { font-variant-numeric: tabular-nums; color: var(--ink); min-width: 70px; }
+  .tm-m .pts { color: var(--accent); font-weight: 700; margin-left: auto; white-space: nowrap; }
+  .tm-m .pts.zero { color: var(--muted); font-weight: 400; }
+  .tm-m.upcoming .res { color: var(--muted); }
+  .chip { display: inline-block; background: var(--panel-2); border: 1px solid var(--line); color: var(--muted); padding: 2px 7px; border-radius: 999px; font-size: 11px; }
+  .chip.bd { color: var(--accent-2); border-color: rgba(91,140,255,.4); }
+  .chip.live { color: var(--warn); border-color: rgba(255,181,71,.5); animation: pulse 1.6s ease-in-out infinite; }
+
+  /* ---------- Matches ---------- */
+  .day { border-bottom: 1px solid var(--line); }
+  .day:last-child { border-bottom: none; }
+  .day-h { margin: 0; padding: 11px 6px; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+  .day-h:hover { color: var(--ink); }
+  .day-h .count { font-size: 11px; border: 1px solid var(--line); border-radius: 999px; padding: 1px 7px; }
+  .day-h .tgl { margin-left: auto; font-size: 11px; }
+  .day.collapsed .day-body { display: none; }
+  .day-body { display: grid; gap: 8px; padding: 0 0 12px; }
+  .match { background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+  .match.live { border-color: rgba(255,181,71,.5); }
+  .m-meta { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--muted); flex-wrap: wrap; }
+  .m-meta .grp { color: var(--accent-2); border: 1px solid rgba(91,140,255,.4); border-radius: 999px; padding: 1px 7px; }
+  .m-meta .st-ft { color: var(--ink); font-weight: 700; }
+  .m-meta .st-live { color: var(--warn); font-weight: 700; animation: pulse 1.6s ease-in-out infinite; }
+  .m-teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; margin-top: 8px; }
+  .m-side { min-width: 0; }
+  .m-side.away { text-align: right; }
+  .m-team { font-size: 15px; font-weight: 650; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .m-owner { font-size: 11.5px; color: var(--muted); display: block; margin-top: 2px; }
+  .m-owner b { color: var(--accent-2); font-weight: 600; }
+  .m-score { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .m-score.tbd { color: var(--muted); font-size: 13px; font-weight: 500; }
+  .m-points { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 9px; border-top: 1px dashed var(--line); padding-top: 8px; }
+  .m-pts-side { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .m-pts-side.away { justify-content: flex-end; }
+  .m-pts-side .who-pts { color: var(--ink); font-weight: 700; }
+  .t-code { display: none; }
+  @media (max-width: 520px) {
+    .t-name { display: none; }
+    .t-code { display: inline; }
+    main { padding: 12px 10px 60px; }
+    .m-score { font-size: 17px; }
+    .total { font-size: 20px; }
+  }
+
+  /* ---------- Rules ---------- */
+  .rules { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  .rules b { color: var(--ink); }
+  .rules .pts { color: var(--accent); font-weight: 700; }
+  .tier { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .tier .lbl { font-size: 12px; color: var(--muted); margin-right: 4px; }
+  .empty { color: var(--muted); font-size: 13px; padding: 18px; text-align: center; }
+  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 10px 0 30px; }
+  footer a { color: var(--accent-2); }
 </style>
 </head>
 <body>
 <header>
-  <h1>2026 FIFA World Cup Draft <span class="sub">snake format · 48 teams</span></h1>
+  <h1>🏆 2026 World Cup Draft <span class="sub">group stage standings</span></h1>
   <div class="header-actions">
-    <span class="badge" id="connBadge"><span class="dot"></span><span id="connText">offline</span></span>
-    <button class="btn hidden" id="exportBtn" title="Copy results to clipboard">Export</button>
-    <button class="btn danger hidden" id="resetBtn">Reset / Leave</button>
+    <span class="badge" id="updatedBadge"><span class="dot"></span><span id="updatedText">loading…</span></span>
+    <a class="btn" href="draft.html">Draft board</a>
   </div>
 </header>
 
 <main>
-
-  <!-- LOBBY (mode picker) -->
-  <section class="card" id="lobbyCard">
-    <div class="head"><h2>Start</h2></div>
-    <div class="body">
-      <div class="mode-picker">
-        <button class="mode-card" data-mode="solo">
-          <h3>🖥️ Solo / One screen</h3>
-          <p>Run the entire draft on this device — pass the laptop around. No internet needed after page load.</p>
-          <span class="tag">No room code</span>
-        </button>
-        <button class="mode-card" data-mode="host">
-          <h3>🎙️ Host a live draft</h3>
-          <p>You're the commissioner. Get a room code, share it, players join from their own devices and pick on their turn.</p>
-          <span class="tag">Keep this tab open</span>
-        </button>
-        <button class="mode-card" data-mode="join">
-          <h3>📱 Join a draft</h3>
-          <p>Someone gave you a 5-character room code. Enter it, claim your seat, and draft on your turn.</p>
-          <span class="tag">From any device</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOST SETUP -->
-  <section class="card hidden" id="hostSetupCard">
-    <div class="head"><h2>Host setup</h2></div>
-    <div class="body setup">
-      <div class="row">
-        <label for="numPlayers">Number of players:</label>
-        <input type="number" id="numPlayers" min="6" max="8" value="6" />
-        <label for="rounds">Rounds (teams per player):</label>
-        <input type="number" id="rounds" min="1" max="8" value="6" />
-      </div>
-      <div class="player-inputs" id="playerInputs"></div>
-      <div class="row">
-        <label for="hostSeat">Your seat:</label>
-        <select id="hostSeat" style="background:var(--panel-2);border:1px solid var(--line);color:var(--ink);padding:8px 10px;border-radius:8px;font-size:14px;"></select>
-      </div>
-      <div class="row">
-        <button class="btn primary" id="createRoomBtn">Create Room</button>
-        <button class="btn" id="backToLobbyBtn1">Back</button>
-        <span class="pill">Snake order: P1→Pn, Pn→P1, repeat</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- JOIN SETUP -->
-  <section class="card hidden" id="joinSetupCard">
-    <div class="head"><h2>Join a draft</h2></div>
-    <div class="body setup">
-      <div class="row">
-        <label for="joinCode">Room code:</label>
-        <input type="text" id="joinCode" maxlength="5" placeholder="ABC12" style="text-transform:uppercase;letter-spacing:6px;font-family:ui-monospace,monospace;font-size:18px;width:140px;min-width:0;" />
-        <label for="joinName">Your name:</label>
-        <input type="text" id="joinName" placeholder="e.g. Felipe" />
-      </div>
-      <div class="row">
-        <button class="btn primary" id="joinRoomBtn">Connect</button>
-        <button class="btn" id="backToLobbyBtn2">Back</button>
-      </div>
-      <div id="joinStatus" class="empty hidden"></div>
-    </div>
-  </section>
-
-  <!-- HOST WAITING ROOM (after room created, before draft starts) -->
-  <section class="card hidden" id="lobbyRoomCard">
-    <div class="head"><h2>Waiting room</h2></div>
-    <div class="body" style="display:grid;gap:14px;">
-      <div class="room-block">
-        <div>
-          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;">Room code</div>
-          <div class="room-code" id="roomCodeDisplay">—</div>
-        </div>
-        <div class="meta" id="shareInfo">
-          Share this code with your players. They open this page and click <b>Join</b>.
-          <div class="url-display" id="shareUrl"></div>
-        </div>
-        <button class="btn" id="copyCodeBtn">Copy code</button>
-      </div>
-      <div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Seats — click a seat name in chat as they fill, or just wait for joins.</div>
-        <div class="seats" id="seatsList"></div>
-      </div>
-      <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="btn primary" id="startDraftBtn">Start Draft</button>
-        <span class="pill" id="seatStatusPill">0 of 0 seats claimed</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLIENT WAITING ROOM (after connected, before draft starts) -->
-  <section class="card hidden" id="clientLobbyCard">
-    <div class="head"><h2>Waiting room</h2></div>
-    <div class="body">
-      <p style="color:var(--muted);margin-top:0;">Pick your seat — the commissioner has set up the player list:</p>
-      <div class="seats" id="clientSeatsList"></div>
-      <p id="clientLobbyStatus" style="color:var(--muted);margin-top:14px;font-size:13px;"></p>
-    </div>
-  </section>
-
-  <!-- DRAFT BOARD -->
-  <div class="grid two-col" id="draftView" style="display:none;">
-    <section class="card">
-      <div class="pickbar" id="pickbar">
-        <span class="label">On the clock</span>
-        <span class="who" id="currentPlayer">—</span>
-        <span class="pickno" id="pickInfo">—</span>
-      </div>
-      <div class="head">
-        <h2>Available Teams <span class="pill" id="availableCount">48</span></h2>
-        <div class="filters">
-          <input type="search" id="search" placeholder="Search team or confederation…" />
-        </div>
-      </div>
-      <div class="body">
-        <div class="teams" id="teams"></div>
-      </div>
-    </section>
-    <div style="display:flex;flex-direction:column;gap:18px;">
-      <section class="card">
-        <div class="head"><h2>Rosters</h2></div>
-        <div class="body">
-          <div class="rosters" id="rosters"></div>
-        </div>
-      </section>
-      <section class="card">
-        <div class="head"><h2>Pick History</h2></div>
-        <div class="body history">
-          <table>
-            <thead><tr><th>#</th><th>Round</th><th>Player</th><th>Team</th><th></th></tr></thead>
-            <tbody id="historyBody"></tbody>
-          </table>
-          <div class="empty" id="historyEmpty">No picks yet.</div>
-        </div>
-      </section>
-    </div>
+  <div class="banner hidden" id="placeholderBanner">
+    ⚠️ Rosters below are <b>placeholders</b> — the real draft results haven't been loaded yet.
   </div>
 
+  <section class="card">
+    <div class="head">
+      <h2>Standings</h2>
+      <span class="chip" id="finishedCount"></span>
+    </div>
+    <div class="body">
+      <div id="leaderboard"><div class="empty">Loading…</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="head">
+      <h2>Matches</h2>
+      <a class="btn" href="#today" id="todayBtn">Jump to today ↓</a>
+    </div>
+    <div class="body" id="matches"><div class="empty">Loading…</div></div>
+  </section>
+
+  <section class="card">
+    <div class="head"><h2>Scoring rules</h2></div>
+    <div class="body rules">
+      <div>• Win <span class="pts">+3</span> &nbsp;·&nbsp; Tie <span class="pts">+1</span></div>
+      <div>• Goal difference (winner only): <span class="pts">+1</span> per goal of margin — a 3–1 win pays +3 (win) +2 (GD)</div>
+      <div>• Clean sheet: <span class="pts">+1</span> for conceding zero (a 0–0 tie pays both sides +1 tie +1 CS)</div>
+      <div>• Underdog goals: <span class="pts">+1</span> for every goal a <b>bottom-16</b> team scores on a <b>top-16</b> team, win or lose</div>
+      <div style="margin-top:6px;">Only finished matches count in the standings — live matches show provisional points marked <span class="chip live">LIVE</span>.</div>
+      <div class="tier" id="top16"></div>
+      <div class="tier" id="bottom16"></div>
+    </div>
+  </section>
+
+  <footer>Updates automatically every few minutes during match days.</footer>
 </main>
 
-<div class="toast" id="toast"></div>
+<script type="module">
+import { scoreMatch, breakdownChips, TOP16_MAX_RANK, BOTTOM16_MIN_RANK } from "./js/scoring.js";
 
-<script>
-// ===================== Teams =====================
-// Order: ESPN World Cup Power Rankings (1–15) + FIFA April 2026 rankings (16–48),
-// filtered to the confirmed 48 qualified nations for the 2026 FIFA World Cup.
-const TEAMS = [
-  { name: "Spain",                   flag: "🇪🇸", rank: 1,  conf: "UEFA" },
-  { name: "France",                  flag: "🇫🇷", rank: 2,  conf: "UEFA" },
-  { name: "Argentina",               flag: "🇦🇷", rank: 3,  conf: "CONMEBOL" },
-  { name: "England",                 flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", rank: 4,  conf: "UEFA" },
-  { name: "Brazil",                  flag: "🇧🇷", rank: 5,  conf: "CONMEBOL" },
-  { name: "Portugal",                flag: "🇵🇹", rank: 6,  conf: "UEFA" },
-  { name: "Germany",                 flag: "🇩🇪", rank: 7,  conf: "UEFA" },
-  { name: "Netherlands",             flag: "🇳🇱", rank: 8,  conf: "UEFA" },
-  { name: "Morocco",                 flag: "🇲🇦", rank: 9,  conf: "CAF" },
-  { name: "Norway",                  flag: "🇳🇴", rank: 10, conf: "UEFA" },
-  { name: "Belgium",                 flag: "🇧🇪", rank: 11, conf: "UEFA" },
-  { name: "Colombia",                flag: "🇨🇴", rank: 12, conf: "CONMEBOL" },
-  { name: "Senegal",                 flag: "🇸🇳", rank: 13, conf: "CAF" },
-  { name: "Croatia",                 flag: "🇭🇷", rank: 14, conf: "UEFA" },
-  { name: "Japan",                   flag: "🇯🇵", rank: 15, conf: "AFC" },
-  { name: "Mexico",                  flag: "🇲🇽", rank: 16, conf: "CONCACAF (host)" },
-  { name: "USA",                     flag: "🇺🇸", rank: 17, conf: "CONCACAF (host)" },
-  { name: "Uruguay",                 flag: "🇺🇾", rank: 18, conf: "CONMEBOL" },
-  { name: "Switzerland",             flag: "🇨🇭", rank: 19, conf: "UEFA" },
-  { name: "Iran",                    flag: "🇮🇷", rank: 20, conf: "AFC" },
-  { name: "Türkiye",                 flag: "🇹🇷", rank: 21, conf: "UEFA" },
-  { name: "Ecuador",                 flag: "🇪🇨", rank: 22, conf: "CONMEBOL" },
-  { name: "Austria",                 flag: "🇦🇹", rank: 23, conf: "UEFA" },
-  { name: "South Korea",             flag: "🇰🇷", rank: 24, conf: "AFC" },
-  { name: "Australia",               flag: "🇦🇺", rank: 25, conf: "AFC" },
-  { name: "Algeria",                 flag: "🇩🇿", rank: 26, conf: "CAF" },
-  { name: "Egypt",                   flag: "🇪🇬", rank: 27, conf: "CAF" },
-  { name: "Canada",                  flag: "🇨🇦", rank: 28, conf: "CONCACAF (host)" },
-  { name: "Panama",                  flag: "🇵🇦", rank: 29, conf: "CONCACAF" },
-  { name: "Ivory Coast",             flag: "🇨🇮", rank: 30, conf: "CAF" },
-  { name: "Sweden",                  flag: "🇸🇪", rank: 31, conf: "UEFA" },
-  { name: "Paraguay",                flag: "🇵🇾", rank: 32, conf: "CONMEBOL" },
-  { name: "Czechia",                 flag: "🇨🇿", rank: 33, conf: "UEFA" },
-  { name: "Scotland",                flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", rank: 34, conf: "UEFA" },
-  { name: "Tunisia",                 flag: "🇹🇳", rank: 35, conf: "CAF" },
-  { name: "DR Congo",                flag: "🇨🇩", rank: 36, conf: "CAF" },
-  { name: "Uzbekistan",              flag: "🇺🇿", rank: 37, conf: "AFC" },
-  { name: "Qatar",                   flag: "🇶🇦", rank: 38, conf: "AFC" },
-  { name: "Iraq",                    flag: "🇮🇶", rank: 39, conf: "AFC" },
-  { name: "South Africa",            flag: "🇿🇦", rank: 40, conf: "CAF" },
-  { name: "Saudi Arabia",            flag: "🇸🇦", rank: 41, conf: "AFC" },
-  { name: "Jordan",                  flag: "🇯🇴", rank: 42, conf: "AFC" },
-  { name: "Bosnia and Herzegovina",  flag: "🇧🇦", rank: 43, conf: "UEFA" },
-  { name: "Cape Verde",              flag: "🇨🇻", rank: 44, conf: "CAF" },
-  { name: "Ghana",                   flag: "🇬🇭", rank: 45, conf: "CAF" },
-  { name: "Curaçao",                 flag: "🇨🇼", rank: 46, conf: "CONCACAF" },
-  { name: "Haiti",                   flag: "🇭🇹", rank: 47, conf: "CONCACAF" },
-  { name: "New Zealand",             flag: "🇳🇿", rank: 48, conf: "OFC" },
-];
-const teamByName = (n) => TEAMS.find(t => t.name === n);
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-// ===================== App state =====================
-// mode: 'lobby' | 'solo' | 'host' | 'client'
-const app = {
-  mode: 'lobby',
-  myPlayerIdx: null,        // which seat I occupy (host or client)
-  peer: null,               // PeerJS Peer
-  // host side
-  connections: new Map(),   // peerId -> DataConnection
-  seatToPeerId: [],         // index = playerIdx, value = peerId or 'host' or null
-  // client side
-  hostConn: null,           // DataConnection to host
-  hostId: null,
-};
+const state = { teams: [], draft: null, matches: [], updated: null, expanded: new Set(), collapsedDays: null };
+let teamBy = {}, rankBy = {}, ownerBy = {};
 
-// Authoritative draft state (host owns; client mirrors)
-const state = {
-  players: [],         // [{ name }]
-  rounds: 6,
-  started: false,
-  picks: [],           // [{ teamName, playerIdx, round, overall }]
-  seats: [],           // [{ claimed: bool, claimantName?: string }]
-};
-
-const HOST_STORAGE_KEY = "wc2026-draft-host-v1";
-const SOLO_STORAGE_KEY = "wc2026-draft-solo-v1";
-
-// ===================== Utilities =====================
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => Array.from(document.querySelectorAll(sel));
-function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-}
-function randomCode(n = 5) {
-  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // skip ambiguous chars
-  let s = "";
-  for (let i = 0; i < n; i++) s += alphabet[Math.floor(Math.random() * alphabet.length)];
-  return s;
-}
-const PEER_PREFIX = "wc26-"; // namespace PeerJS IDs so codes don't collide with random other apps
-
-let toastTimer;
-function toast(msg) {
-  const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+const bust = () => `?v=${Date.now()}`;
+async function getJSON(path) {
+  const r = await fetch(path + bust(), { cache: "no-store" });
+  if (!r.ok) throw new Error(`${path}: HTTP ${r.status}`);
+  return r.json();
 }
 
-// ===================== Persistence (host & solo) =====================
-function saveState() {
-  if (app.mode === 'solo') {
-    localStorage.setItem(SOLO_STORAGE_KEY, JSON.stringify({
-      players: state.players, rounds: state.rounds, started: state.started, picks: state.picks,
-    }));
-  } else if (app.mode === 'host') {
-    localStorage.setItem(HOST_STORAGE_KEY, JSON.stringify({
-      players: state.players, rounds: state.rounds, started: state.started, picks: state.picks,
-      seats: state.seats, hostSeatIdx: app.myPlayerIdx,
-    }));
-  }
+function indexData() {
+  teamBy = Object.fromEntries(state.teams.map(t => [t.name, t]));
+  rankBy = Object.fromEntries(state.teams.map(t => [t.name, t.rank]));
+  ownerBy = {};
+  for (const p of state.draft.players) for (const tn of p.teams) ownerBy[tn] = p.name;
 }
 
-// ===================== Draft logic (pure) =====================
-function totalPicks() { return state.players.length * state.rounds; }
-function pickToSlot(overallZeroIdx) {
-  const n = state.players.length;
-  const round = Math.floor(overallZeroIdx / n);
-  const within = overallZeroIdx % n;
-  const playerIdx = (round % 2 === 0) ? within : (n - 1 - within);
-  return { round: round + 1, playerIdx };
-}
-function nextSlot() {
-  if (!state.started) return null;
-  if (state.picks.length >= totalPicks()) return null;
-  return pickToSlot(state.picks.length);
-}
-function availableTeams() {
-  const taken = new Set(state.picks.map(p => p.teamName));
-  return TEAMS.filter(t => !taken.has(t.name));
-}
-function canDraft(teamName, byPlayerIdx) {
-  const slot = nextSlot();
-  if (!slot) return { ok: false, reason: "Draft complete." };
-  if (slot.playerIdx !== byPlayerIdx) return { ok: false, reason: "Not your turn." };
-  if (state.picks.some(p => p.teamName === teamName)) return { ok: false, reason: "Team already drafted." };
-  return { ok: true, slot };
+const fmtDay = new Intl.DateTimeFormat(undefined, { weekday: "long", month: "long", day: "numeric" });
+const fmtTime = new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" });
+const localDayKey = (d) => { const x = new Date(d); return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`; };
+
+function teamLabel(name, withFlag = true) {
+  const t = teamBy[name];
+  return `${withFlag ? t.flag + " " : ""}<span class="t-name">${esc(name)}</span><span class="t-code">${t.code}</span>`;
 }
 
-// ===================== Networking — HOST =====================
-function broadcastState() {
-  const payload = { type: "state", state: snapshotState() };
-  for (const conn of app.connections.values()) {
-    try { conn.send(payload); } catch (e) {}
-  }
-}
-function snapshotState() {
-  return {
-    players: state.players,
-    rounds: state.rounds,
-    started: state.started,
-    picks: state.picks,
-    seats: state.seats,
-  };
-}
-function sendToPeer(peerId, msg) {
-  const c = app.connections.get(peerId);
-  if (c) { try { c.send(msg); } catch (e) {} }
-}
+// ---------- compute standings ----------
+function compute() {
+  const todayKey = localDayKey(new Date());
+  const players = state.draft.players.map(p => ({
+    name: p.name, teams: p.teams, total: 0, today: 0, live: 0, played: 0,
+    perTeam: Object.fromEntries(p.teams.map(t => [t, { total: 0, rows: [] }])),
+  }));
+  const byName = Object.fromEntries(players.map(p => [p.name, p]));
+  const matchPts = {}; // match.id -> {home, away} breakdowns
 
-async function createPeerWithCode() {
-  // Try a few random codes in case of collision on the public broker.
-  for (let attempt = 0; attempt < 5; attempt++) {
-    const code = randomCode(5);
-    const id = PEER_PREFIX + code;
-    const peer = new Peer(id, { debug: 0 });
-    try {
-      await new Promise((resolve, reject) => {
-        const onOpen = () => { peer.off("open", onOpen); peer.off("error", onError); resolve(); };
-        const onError = (err) => { peer.off("open", onOpen); peer.off("error", onError); reject(err); };
-        peer.on("open", onOpen);
-        peer.on("error", onError);
-      });
-      return { peer, code };
-    } catch (e) {
-      try { peer.destroy(); } catch (_) {}
-      // Try again with a new code
+  for (const m of state.matches) {
+    const bd = (m.status === "FINISHED" || m.status === "LIVE") ? scoreMatch(m, rankBy) : null;
+    if (bd) matchPts[m.id] = bd;
+    for (const side of ["home", "away"]) {
+      const team = m[side], opp = side === "home" ? m.away : m.home;
+      const owner = byName[ownerBy[team]];
+      if (!owner) continue;
+      const b = bd ? bd[side] : null;
+      if (m.status === "FINISHED" && b) {
+        owner.total += b.total;
+        owner.played++;
+        if (localDayKey(m.utcDate) === todayKey) owner.today += b.total;
+      } else if (m.status === "LIVE" && b) {
+        owner.live += b.total;
+      }
+      owner.perTeam[team].rows.push({ match: m, opp, side, b });
+      if (m.status === "FINISHED" && b) owner.perTeam[team].total += b.total;
     }
   }
-  throw new Error("Couldn't reserve a room code — try again.");
+  players.sort((a, b) => b.total - a.total || b.today - a.today || a.name.localeCompare(b.name));
+  return { players, matchPts };
 }
 
-async function startHostingRoom() {
-  try {
-    const { peer, code } = await createPeerWithCode();
-    app.peer = peer;
-    $("#roomCodeDisplay").textContent = code;
-    $("#shareUrl").textContent = location.origin + location.pathname;
-    setConnBadge(true, `Hosting · room ${code}`);
+// ---------- leaderboard ----------
+function renderLeaderboard(players) {
+  const wrap = $("#leaderboard");
+  const prevTops = {};
+  for (const el of wrap.querySelectorAll(".lb-row")) prevTops[el.dataset.player] = el.getBoundingClientRect().top;
 
-    peer.on("connection", (conn) => {
-      app.connections.set(conn.peer, conn);
-      conn.on("open", () => {
-        conn.send({ type: "state", state: snapshotState() });
-      });
-      conn.on("data", (data) => handleHostMessage(conn, data));
-      conn.on("close", () => {
-        app.connections.delete(conn.peer);
-        // Free any seat that peer occupied
-        let changed = false;
-        state.seats.forEach((s, i) => {
-          if (s.peerId === conn.peer) {
-            s.claimed = false; s.peerId = null;
-            // keep claimantName so host sees who was there, but mark offline
-            s.online = false;
-            changed = true;
-          }
-        });
-        if (changed) {
-          updateSeatsListHost();
-          broadcastState();
-          saveState();
+  wrap.innerHTML = "";
+  players.forEach((p, i) => {
+    const row = document.createElement("div");
+    row.className = `lb-row p${i + 1}` + (state.expanded.has(p.name) ? " open" : "");
+    row.dataset.player = p.name;
+    row.innerHTML = `
+      <button class="lb-main">
+        <span class="pos">${i + 1}</span>
+        <span class="who">
+          <span class="pname">${esc(p.name)}</span>
+          <span class="psub">${p.teams.length} teams · ${p.played} of ${p.teams.length * 3} games played</span>
+        </span>
+        ${p.today ? `<span class="today-pill">+${p.today} today</span>` : ""}
+        ${p.live ? `<span class="live-pill">+${p.live} live</span>` : ""}
+        <span class="total">${p.total}</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="lb-detail"></div>`;
+    const detail = row.querySelector(".lb-detail");
+    for (const tn of [...p.teams].sort((a, b) => rankBy[a] - rankBy[b])) {
+      const t = teamBy[tn], pt = p.perTeam[tn];
+      const tm = document.createElement("div");
+      tm.className = "tm";
+      tm.innerHTML = `
+        <div class="tm-head">${t.flag} ${esc(tn)}
+          <span class="chip">#${t.rank}</span><span class="chip">Group ${t.group}</span>
+          <span class="tm-pts ${pt.total ? "" : "zero"}">+${pt.total}</span>
+        </div>
+        <div class="tm-matches"></div>`;
+      const list = tm.querySelector(".tm-matches");
+      for (const r of pt.rows.sort((a, b) => a.match.utcDate.localeCompare(b.match.utcDate))) {
+        const mEl = document.createElement("div");
+        const sc = r.match.score;
+        const gf = sc ? (r.side === "home" ? sc.home : sc.away) : null;
+        const ga = sc ? (r.side === "home" ? sc.away : sc.home) : null;
+        if (r.match.status === "FINISHED" || r.match.status === "LIVE") {
+          const live = r.match.status === "LIVE";
+          mEl.className = "tm-m";
+          mEl.innerHTML = `
+            <span class="res">${live ? "" : "FT "}${gf}–${ga}</span>
+            <span>vs ${teamBy[r.opp].flag} ${teamBy[r.opp].code}</span>
+            ${live ? '<span class="chip live">LIVE</span>' : ""}
+            <span class="pts ${r.b && r.b.total ? "" : "zero"}">${r.b ? breakdownChips(r.b).join(" · ") || "—" : "—"}${r.b ? ` → +${r.b.total}` : ""}</span>`;
+        } else {
+          const d = new Date(r.match.utcDate);
+          mEl.className = "tm-m upcoming";
+          mEl.innerHTML = `
+            <span class="res">${fmtDay.format(d).split(",")[0].slice(0, 3)} ${d.getDate()}, ${fmtTime.format(d)}</span>
+            <span>vs ${teamBy[r.opp].flag} ${teamBy[r.opp].code}</span>`;
         }
+        list.appendChild(mEl);
+      }
+      detail.appendChild(tm);
+    }
+    row.querySelector(".lb-main").addEventListener("click", () => {
+      state.expanded.has(p.name) ? state.expanded.delete(p.name) : state.expanded.add(p.name);
+      row.classList.toggle("open");
+    });
+    wrap.appendChild(row);
+  });
+
+  // FLIP: animate rows from old to new position
+  for (const el of wrap.querySelectorAll(".lb-row")) {
+    const prev = prevTops[el.dataset.player];
+    if (prev === undefined) continue;
+    const delta = prev - el.getBoundingClientRect().top;
+    if (Math.abs(delta) < 2) continue;
+    el.animate(
+      [{ transform: `translateY(${delta}px)` }, { transform: "translateY(0)" }],
+      { duration: 500, easing: "cubic-bezier(.2,.8,.2,1)" }
+    );
+  }
+}
+
+// ---------- matches ----------
+function ownerLine(side, m, matchPts) {
+  const owner = ownerBy[m[side]];
+  if (!owner) return `<span class="m-owner">—</span>`;
+  return `<span class="m-owner"><b>${esc(owner)}</b></span>`;
+}
+
+function renderMatches(matchPts) {
+  const wrap = $("#matches");
+  wrap.innerHTML = "";
+  const todayKey = localDayKey(new Date());
+  if (state.collapsedDays === null) {
+    state.collapsedDays = new Set();
+    const byDay = {};
+    for (const m of state.matches) (byDay[localDayKey(m.utcDate)] ||= []).push(m);
+    for (const [day, ms] of Object.entries(byDay)) {
+      if (day < todayKey && ms.every(m => m.status === "FINISHED")) state.collapsedDays.add(day);
+    }
+  }
+
+  let currentDay = null, dayEl = null, bodyEl = null, todayMarked = false;
+  for (const m of [...state.matches].sort((a, b) => a.utcDate.localeCompare(b.utcDate))) {
+    const dayKey = localDayKey(m.utcDate);
+    if (dayKey !== currentDay) {
+      currentDay = dayKey;
+      dayEl = document.createElement("div");
+      dayEl.className = "day" + (state.collapsedDays.has(dayKey) ? " collapsed" : "");
+      if (!todayMarked && dayKey >= todayKey) { dayEl.id = "today"; todayMarked = true; }
+      const h = document.createElement("h3");
+      h.className = "day-h";
+      const dayMatches = state.matches.filter(x => localDayKey(x.utcDate) === dayKey);
+      h.innerHTML = `${fmtDay.format(new Date(m.utcDate))}${dayKey === todayKey ? " · today" : ""}
+        <span class="count">${dayMatches.length}</span><span class="tgl">▾</span>`;
+      h.addEventListener("click", () => {
+        dayEl.classList.toggle("collapsed");
+        dayEl.classList.contains("collapsed") ? state.collapsedDays.add(dayKey) : state.collapsedDays.delete(dayKey);
       });
-      conn.on("error", () => {});
-    });
-
-    peer.on("disconnected", () => setConnBadge(false, "Disconnected"));
-    peer.on("close", () => setConnBadge(false, "Closed"));
-    peer.on("error", (err) => {
-      console.warn("Peer error", err);
-      toast("Network error: " + (err.type || err.message || "unknown"));
-    });
-  } catch (e) {
-    toast(e.message || "Couldn't create room.");
-    throw e;
-  }
-}
-
-function handleHostMessage(conn, msg) {
-  if (!msg || typeof msg !== "object") return;
-  if (msg.type === "claimSeat") {
-    const idx = msg.playerIdx;
-    if (typeof idx !== "number" || idx < 0 || idx >= state.players.length) {
-      conn.send({ type: "rejected", reason: "Invalid seat." });
-      return;
+      bodyEl = document.createElement("div");
+      bodyEl.className = "day-body";
+      dayEl.append(h, bodyEl);
+      wrap.appendChild(dayEl);
     }
-    const seat = state.seats[idx];
-    // Allow re-claim by same peer (refresh) or claim of unclaimed seat
-    if (seat.claimed && seat.peerId !== conn.peer) {
-      conn.send({ type: "rejected", reason: "Seat already claimed." });
-      return;
-    }
-    // Release any other seat this peer was holding
-    state.seats.forEach((s, i) => {
-      if (s.peerId === conn.peer && i !== idx) { s.claimed = false; s.peerId = null; s.online = false; }
-    });
-    seat.claimed = true;
-    seat.peerId = conn.peer;
-    seat.online = true;
-    if (msg.name && msg.name.trim()) {
-      state.players[idx].name = msg.name.trim().slice(0, 40);
-    }
-    conn.send({ type: "youAre", playerIdx: idx });
-    updateSeatsListHost();
-    broadcastState();
-    saveState();
-    return;
-  }
-  if (msg.type === "draft") {
-    const idx = seatOfPeer(conn.peer);
-    if (idx === null) {
-      conn.send({ type: "rejected", reason: "Claim a seat first." });
-      return;
-    }
-    const verdict = canDraft(msg.teamName, idx);
-    if (!verdict.ok) { conn.send({ type: "rejected", reason: verdict.reason }); return; }
-    applyPick(msg.teamName, idx);
-    broadcastState();
-    saveState();
-    return;
-  }
-}
 
-function seatOfPeer(peerId) {
-  const i = state.seats.findIndex(s => s.peerId === peerId);
-  return i === -1 ? null : i;
-}
-
-function applyPick(teamName, playerIdx) {
-  const slot = nextSlot();
-  state.picks.push({
-    teamName, playerIdx,
-    round: slot.round,
-    overall: state.picks.length + 1,
-  });
-}
-
-// ===================== Networking — CLIENT =====================
-async function connectAsClient(code, name) {
-  const hostId = PEER_PREFIX + code.toUpperCase().trim();
-  const peer = new Peer({ debug: 0 });
-  app.peer = peer;
-  setConnBadge(false, "Connecting…");
-
-  await new Promise((resolve, reject) => {
-    peer.on("open", resolve);
-    peer.on("error", reject);
-  });
-
-  const conn = peer.connect(hostId, { reliable: true });
-  app.hostConn = conn;
-  app.hostId = hostId;
-
-  await new Promise((resolve, reject) => {
-    const timer = setTimeout(() => reject(new Error("Couldn't reach host — check the code.")), 10000);
-    conn.on("open", () => { clearTimeout(timer); resolve(); });
-    conn.on("error", (e) => { clearTimeout(timer); reject(e); });
-  });
-
-  setConnBadge(true, "Connected");
-  conn.on("data", (data) => handleClientMessage(data));
-  conn.on("close", () => { setConnBadge(false, "Host disconnected"); toast("Disconnected from host."); });
-  // Stash desired name to send with seat claim
-  app._joinName = name;
-}
-
-function handleClientMessage(msg) {
-  if (!msg || typeof msg !== "object") return;
-  if (msg.type === "state") {
-    Object.assign(state, msg.state);
-    renderAfterStateChange();
-    return;
-  }
-  if (msg.type === "youAre") {
-    app.myPlayerIdx = msg.playerIdx;
-    toast(`You're Player ${msg.playerIdx + 1}: ${state.players[msg.playerIdx]?.name || ""}`);
-    renderAfterStateChange();
-    return;
-  }
-  if (msg.type === "rejected") {
-    toast(msg.reason || "Action rejected.");
-    return;
-  }
-}
-
-function clientClaimSeat(playerIdx) {
-  if (!app.hostConn) return;
-  app.hostConn.send({ type: "claimSeat", playerIdx, name: app._joinName });
-}
-function clientDraft(teamName) {
-  if (!app.hostConn) return;
-  app.hostConn.send({ type: "draft", teamName });
-}
-
-// ===================== UI: mode switching =====================
-function showOnly(...cardIds) {
-  const all = ["lobbyCard","hostSetupCard","joinSetupCard","lobbyRoomCard","clientLobbyCard"];
-  all.forEach(id => $("#"+id).classList.add("hidden"));
-  cardIds.forEach(id => $("#"+id).classList.remove("hidden"));
-  $("#draftView").style.display = "none";
-}
-function showDraftBoard() {
-  ["lobbyCard","hostSetupCard","joinSetupCard","lobbyRoomCard","clientLobbyCard"]
-    .forEach(id => $("#"+id).classList.add("hidden"));
-  $("#draftView").style.display = "grid";
-}
-
-function setConnBadge(online, text) {
-  const b = $("#connBadge");
-  b.classList.toggle("online", !!online);
-  b.classList.toggle("offline", !online);
-  $("#connText").textContent = text || (online ? "online" : "offline");
-}
-
-// ===================== Solo mode (single-screen) =====================
-function loadSoloIfAny() {
-  try {
-    const raw = localStorage.getItem(SOLO_STORAGE_KEY);
-    if (!raw) return false;
-    const data = JSON.parse(raw);
-    if (!data.started) return false;
-    Object.assign(state, {
-      players: data.players, rounds: data.rounds, started: true, picks: data.picks || [],
-      seats: data.players.map(() => ({ claimed: true, online: true })),
-    });
-    app.mode = 'solo';
-    return true;
-  } catch (e) { return false; }
-}
-
-function enterSoloMode() {
-  app.mode = 'solo';
-  setConnBadge(false, "Solo (offline)");
-  if (!loadSoloIfAny()) {
-    // Show host-style setup but flagged as solo
-    $("#hostSeat").parentElement.style.display = "none";
-    renderHostSetup();
-    showOnly("hostSetupCard");
-  } else {
-    showDraftBoard();
-    renderAfterStateChange();
-  }
-  $("#resetBtn").classList.remove("hidden");
-  $("#exportBtn").classList.remove("hidden");
-}
-
-// ===================== Host mode =====================
-function renderHostSetup() {
-  const n = clamp(parseInt($("#numPlayers").value, 10) || 6, 6, 8);
-  $("#numPlayers").value = n;
-  const wrap = $("#playerInputs");
-  const existing = $$("#playerInputs input").map(i => i.value);
-  wrap.innerHTML = "";
-  for (let i = 0; i < n; i++) {
-    const input = document.createElement("input");
-    input.type = "text";
-    input.placeholder = `Player ${i + 1} name`;
-    input.value = existing[i] || "";
-    input.style.cssText = "background:var(--panel-2);border:1px solid var(--line);color:var(--ink);padding:8px 10px;border-radius:8px;font-size:14px;width:100%;";
-    wrap.appendChild(input);
-  }
-  // Host seat selector
-  const sel = $("#hostSeat");
-  sel.innerHTML = "";
-  for (let i = 0; i < n; i++) {
-    const opt = document.createElement("option");
-    opt.value = i;
-    opt.textContent = `Player ${i + 1}`;
-    sel.appendChild(opt);
-  }
-}
-
-async function commissionerCreateRoom() {
-  const names = $$("#playerInputs input").map(i => i.value.trim()).filter(Boolean);
-  const n = clamp(parseInt($("#numPlayers").value, 10) || 6, 6, 8);
-  if (names.length !== n) { alert(`Please enter all ${n} player names.`); return; }
-  state.players = names.map(name => ({ name }));
-  state.rounds = clamp(parseInt($("#rounds").value, 10) || 6, 1, 8);
-  state.started = false;
-  state.picks = [];
-  state.seats = names.map(() => ({ claimed: false, online: false, peerId: null }));
-  app.mode = 'host';
-  app.myPlayerIdx = parseInt($("#hostSeat").value, 10) || 0;
-  // Host auto-claims their own seat
-  state.seats[app.myPlayerIdx] = { claimed: true, online: true, peerId: "host" };
-
-  $("#createRoomBtn").disabled = true;
-  $("#createRoomBtn").textContent = "Creating…";
-  try {
-    await startHostingRoom();
-  } catch (e) {
-    $("#createRoomBtn").disabled = false;
-    $("#createRoomBtn").textContent = "Create Room";
-    return;
-  }
-  showOnly("lobbyRoomCard");
-  $("#resetBtn").classList.remove("hidden");
-  $("#exportBtn").classList.remove("hidden");
-  updateSeatsListHost();
-  saveState();
-}
-
-function updateSeatsListHost() {
-  const wrap = $("#seatsList");
-  wrap.innerHTML = "";
-  let claimed = 0;
-  state.players.forEach((p, i) => {
-    const seat = state.seats[i];
-    if (seat.claimed) claimed++;
-    const el = document.createElement("div");
-    el.className = "seat" + (seat.claimed ? " claimed" : "") + (i === app.myPlayerIdx ? " you" : "");
-    const youTag = i === app.myPlayerIdx ? " (you)" : "";
-    el.innerHTML = `
-      <div>
-        <div class="name">P${i+1} · ${escapeHtml(p.name)}${youTag}</div>
-        <div class="status">${seat.claimed ? "🟢 ready" : "⏳ waiting"}</div>
-      </div>
-    `;
-    wrap.appendChild(el);
-  });
-  $("#seatStatusPill").textContent = `${claimed} of ${state.players.length} seats claimed`;
-}
-
-function hostStartDraft() {
-  // Allow starting even if some seats unclaimed — commissioner can pick on their behalf.
-  state.started = true;
-  showDraftBoard();
-  broadcastState();
-  saveState();
-  renderAfterStateChange();
-}
-
-// ===================== Client mode =====================
-async function clientConnectClicked() {
-  const code = $("#joinCode").value.toUpperCase().trim();
-  const name = $("#joinName").value.trim();
-  if (!/^[A-Z0-9]{5}$/.test(code)) { toast("Room code must be 5 characters."); return; }
-  if (!name) { toast("Enter your name."); return; }
-  app.mode = 'client';
-  $("#joinRoomBtn").disabled = true;
-  $("#joinStatus").classList.remove("hidden");
-  $("#joinStatus").textContent = "Connecting…";
-  try {
-    await connectAsClient(code, name);
-    showOnly("clientLobbyCard");
-    $("#resetBtn").classList.remove("hidden");
-  } catch (e) {
-    $("#joinStatus").textContent = "Couldn't connect: " + (e?.message || e?.type || "unknown error");
-    $("#joinRoomBtn").disabled = false;
-  }
-}
-
-function renderClientLobby() {
-  const wrap = $("#clientSeatsList");
-  wrap.innerHTML = "";
-  state.players.forEach((p, i) => {
-    const seat = state.seats[i] || {};
-    const el = document.createElement("button");
-    el.className = "seat" + (seat.claimed ? " claimed" : "") + (i === app.myPlayerIdx ? " you" : "");
-    el.style.cursor = (seat.claimed && i !== app.myPlayerIdx) ? "not-allowed" : "pointer";
-    el.disabled = seat.claimed && i !== app.myPlayerIdx;
-    el.innerHTML = `
-      <div>
-        <div class="name">P${i+1} · ${escapeHtml(p.name)}</div>
-        <div class="status">${seat.claimed ? (i === app.myPlayerIdx ? "🟢 you" : "🟢 taken") : "⏳ open"}</div>
-      </div>
-      <span class="status">${i === app.myPlayerIdx ? "" : (seat.claimed ? "" : "claim →")}</span>
-    `;
-    el.addEventListener("click", () => clientClaimSeat(i));
-    wrap.appendChild(el);
-  });
-  $("#clientLobbyStatus").textContent = state.started
-    ? "Draft has started — switching to board…"
-    : (app.myPlayerIdx == null ? "Pick your seat." : "You're in. Waiting for the commissioner to start.");
-  if (state.started) showDraftBoard();
-}
-
-// ===================== Rendering: draft board =====================
-function isMyTurn() {
-  const slot = nextSlot();
-  if (!slot) return false;
-  if (app.mode === 'solo') return true;
-  return slot.playerIdx === app.myPlayerIdx;
-}
-
-function renderPickbar() {
-  const slot = nextSlot();
-  const bar = $("#pickbar");
-  bar.classList.remove("done", "mine");
-  if (!slot) {
-    bar.classList.add("done");
-    $("#currentPlayer").textContent = "Draft complete 🏆";
-    $("#pickInfo").textContent = `${state.picks.length} picks made`;
-    return;
-  }
-  if (isMyTurn() && app.mode !== 'solo') bar.classList.add("mine");
-  const p = state.players[slot.playerIdx];
-  $("#currentPlayer").textContent = p.name;
-  $("#pickInfo").textContent = `Round ${slot.round} of ${state.rounds} · Pick ${state.picks.length + 1} of ${totalPicks()}`;
-}
-
-function renderTeams() {
-  const q = ($("#search").value || "").trim().toLowerCase();
-  const list = availableTeams()
-    .filter(t => !q || t.name.toLowerCase().includes(q) || t.conf.toLowerCase().includes(q))
-    .sort((a, b) => a.rank - b.rank);
-  $("#availableCount").textContent = availableTeams().length;
-  const wrap = $("#teams");
-  wrap.innerHTML = "";
-  if (!list.length) {
-    const d = document.createElement("div");
-    d.className = "empty";
-    d.textContent = q ? "No teams match your search." : "All teams have been drafted.";
-    wrap.appendChild(d);
-    return;
-  }
-  const canPick = isMyTurn();
-  for (const t of list) {
-    const el = document.createElement("button");
-    el.className = "team";
-    el.disabled = !canPick;
-    el.title = canPick ? `Draft ${t.name}` : "Not your turn";
-    el.innerHTML = `
-      <span class="name"><span class="flag">${t.flag}</span> ${t.name}<span class="conf">${t.conf}</span></span>
-      <span class="rank">#${t.rank}</span>
-    `;
-    el.addEventListener("click", () => onDraftClick(t.name));
-    wrap.appendChild(el);
-  }
-}
-
-function onDraftClick(teamName) {
-  if (app.mode === 'solo') {
-    const slot = nextSlot();
-    if (!slot) return;
-    applyPick(teamName, slot.playerIdx);
-    saveState();
-    renderAfterStateChange();
-    return;
-  }
-  if (app.mode === 'host') {
-    const verdict = canDraft(teamName, app.myPlayerIdx);
-    if (!verdict.ok) { toast(verdict.reason); return; }
-    applyPick(teamName, app.myPlayerIdx);
-    broadcastState();
-    saveState();
-    renderAfterStateChange();
-    return;
-  }
-  if (app.mode === 'client') {
-    clientDraft(teamName);
-  }
-}
-
-function renderRosters() {
-  const wrap = $("#rosters");
-  wrap.innerHTML = "";
-  const slot = nextSlot();
-  state.players.forEach((p, idx) => {
+    const live = m.status === "LIVE", fin = m.status === "FINISHED";
+    const bd = matchPts[m.id];
     const card = document.createElement("div");
-    let cls = "roster";
-    if (slot && slot.playerIdx === idx) cls += " current";
-    if (idx === app.myPlayerIdx) cls += " you";
-    card.className = cls;
-    const picks = state.picks.filter(pk => pk.playerIdx === idx);
-    const seat = state.seats[idx] || {};
-    const connTag = app.mode === 'solo' ? '' :
-      (seat.online ? '<span class="conn online">● online</span>' : '<span class="conn offline">○ offline</span>');
+    card.className = "match" + (live ? " live" : "");
+    const statusHtml = fin ? `<span class="st-ft">FT</span>`
+      : live ? `<span class="st-live">● LIVE</span>`
+      : `<span>${fmtTime.format(new Date(m.utcDate))}</span>`;
     card.innerHTML = `
-      <h3>
-        <span>${escapeHtml(p.name)}${idx === app.myPlayerIdx ? ' <span style="color:var(--accent-2);font-size:11px;">(you)</span>' : ''}</span>
-        <span class="count">${picks.length}/${state.rounds} ${connTag}</span>
-      </h3>
-      <ul></ul>
-    `;
-    const ul = card.querySelector("ul");
-    if (!picks.length) {
-      const li = document.createElement("li");
-      li.style.color = "var(--muted)";
-      li.textContent = "— no picks yet —";
-      ul.appendChild(li);
-    } else {
-      picks.forEach(pk => {
-        const t = teamByName(pk.teamName);
-        const li = document.createElement("li");
-        li.innerHTML = `<span>${t.flag} ${t.name}</span><span class="meta">R${pk.round} · #${t.rank}</span>`;
-        ul.appendChild(li);
-      });
+      <div class="m-meta"><span class="grp">Group ${m.group}</span>${statusHtml}<span>${esc(m.venue || "")}</span></div>
+      <div class="m-teams">
+        <div class="m-side home"><span class="m-team">${teamLabel(m.home)}</span>${ownerLine("home", m, matchPts)}</div>
+        <div class="m-score ${m.score ? "" : "tbd"}">${m.score ? `${m.score.home} – ${m.score.away}` : "vs"}</div>
+        <div class="m-side away"><span class="m-team">${teamLabel(m.away)}</span>${ownerLine("away", m, matchPts)}</div>
+      </div>`;
+    if (bd) {
+      const pts = document.createElement("div");
+      pts.className = "m-points";
+      const sideHtml = (side) => {
+        const owner = ownerBy[m[side]];
+        const b = bd[side];
+        const chips = breakdownChips(b).map(c => `<span class="chip bd">${c}</span>`).join("");
+        return `<div class="m-pts-side ${side}">
+          <span class="who-pts">${owner ? esc(owner) : "—"} +${b.total}${live ? " (live)" : ""}</span>${chips}</div>`;
+      };
+      pts.innerHTML = sideHtml("home") + sideHtml("away");
+      card.appendChild(pts);
     }
-    wrap.appendChild(card);
-  });
-}
-
-function renderHistory() {
-  const tbody = $("#historyBody");
-  tbody.innerHTML = "";
-  $("#historyEmpty").style.display = state.picks.length ? "none" : "block";
-  state.picks.slice().reverse().forEach((pk, i) => {
-    const isLast = i === 0;
-    const t = teamByName(pk.teamName);
-    const canUndo = isLast && (app.mode === 'solo' || app.mode === 'host');
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${pk.overall}</td>
-      <td>R${pk.round}</td>
-      <td>${escapeHtml(state.players[pk.playerIdx].name)}</td>
-      <td>${t.flag} ${t.name} <span style="color:var(--muted)">#${t.rank}</span></td>
-      <td>${canUndo ? '<button class="undo" id="undoBtn">undo</button>' : ''}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-  const undo = $("#undoBtn");
-  if (undo) undo.addEventListener("click", undoLast);
-}
-
-function undoLast() {
-  if (!state.picks.length) return;
-  state.picks.pop();
-  if (app.mode === 'host') { broadcastState(); }
-  saveState();
-  renderAfterStateChange();
-}
-
-function renderAfterStateChange() {
-  if (app.mode === 'client' && !state.started) {
-    renderClientLobby();
-    return;
+    bodyEl.appendChild(card);
   }
-  if (app.mode === 'host' && !state.started) {
-    updateSeatsListHost();
-    return;
-  }
-  // Draft running (solo, host, client)
-  showDraftBoard();
-  renderPickbar();
-  renderTeams();
-  renderRosters();
-  renderHistory();
 }
 
-// ===================== Export & reset =====================
-function exportResults() {
-  const lines = [];
-  lines.push(`2026 World Cup Draft Results`);
-  lines.push(`Snake draft · ${state.players.length} players · ${state.rounds} rounds`);
-  lines.push("");
-  state.players.forEach((p, idx) => {
-    const picks = state.picks.filter(pk => pk.playerIdx === idx);
-    lines.push(`${p.name}:`);
-    picks.forEach(pk => {
-      const t = teamByName(pk.teamName);
-      lines.push(`  R${pk.round}  ${t.name}  (#${t.rank}, ${t.conf})`);
-    });
-    lines.push("");
-  });
-  const text = lines.join("\n");
-  navigator.clipboard?.writeText(text).then(
-    () => toast("Results copied to clipboard."),
-    () => { prompt("Copy results:", text); }
-  );
+// ---------- rules tiers ----------
+function renderTiers() {
+  const tier = (el, label, filter) => {
+    const chips = state.teams.filter(filter).sort((a, b) => a.rank - b.rank)
+      .map(t => `<span class="chip" title="#${t.rank}">${t.flag} ${t.code}</span>`).join("");
+    el.innerHTML = `<span class="lbl">${label}</span>${chips}`;
+  };
+  tier($("#top16"), "Top 16:", t => t.rank <= TOP16_MAX_RANK);
+  tier($("#bottom16"), "Bottom 16:", t => t.rank >= BOTTOM16_MIN_RANK);
 }
 
-function resetEverything() {
-  const label = app.mode === 'client' ? "Leave this draft?" : "Reset the entire draft? This clears all picks.";
-  if (!confirm(label)) return;
-  try { app.peer?.destroy(); } catch (e) {}
-  app.connections.clear();
-  app.peer = null;
-  app.hostConn = null;
-  app.myPlayerIdx = null;
-  app.mode = 'lobby';
-  Object.assign(state, { players: [], rounds: 6, started: false, picks: [], seats: [] });
-  localStorage.removeItem(SOLO_STORAGE_KEY);
-  localStorage.removeItem(HOST_STORAGE_KEY);
-  $("#resetBtn").classList.add("hidden");
-  $("#exportBtn").classList.add("hidden");
-  $("#createRoomBtn").disabled = false;
-  $("#createRoomBtn").textContent = "Create Room";
-  $("#joinRoomBtn").disabled = false;
-  $("#joinStatus").classList.add("hidden");
-  setConnBadge(false, "offline");
-  showOnly("lobbyCard");
+// ---------- render + refresh loop ----------
+function renderAll() {
+  const { players, matchPts } = compute();
+  renderLeaderboard(players);
+  renderMatches(matchPts);
+  const fin = state.matches.filter(m => m.status === "FINISHED").length;
+  $("#finishedCount").textContent = `${fin} of ${state.matches.length} matches final`;
+  if (state.updated) $("#updatedText").textContent = `updated ${fmtTime.format(new Date(state.updated))}`;
 }
 
-// ===================== Wire up =====================
-$$(".mode-card").forEach(b => b.addEventListener("click", () => {
-  const m = b.getAttribute("data-mode");
-  if (m === 'solo') return enterSoloMode();
-  if (m === 'host') { $("#hostSeat").parentElement.style.display = ""; renderHostSetup(); showOnly("hostSetupCard"); return; }
-  if (m === 'join') { showOnly("joinSetupCard"); $("#joinCode").focus(); return; }
-}));
+async function loadAll() {
+  const [teams, draft, md] = await Promise.all([
+    getJSON("data/teams.json"), getJSON("data/draft.json"), getJSON("data/matches.json"),
+  ]);
+  state.teams = teams;
+  state.draft = draft;
+  state.matches = md.matches;
+  state.updated = md.updated;
+  $("#placeholderBanner").classList.toggle("hidden", !draft.placeholder);
+  indexData();
+  renderTiers();
+  renderAll();
+}
 
-$("#numPlayers").addEventListener("input", renderHostSetup);
-$("#createRoomBtn").addEventListener("click", commissionerCreateRoom);
-$("#backToLobbyBtn1").addEventListener("click", () => showOnly("lobbyCard"));
-$("#backToLobbyBtn2").addEventListener("click", () => showOnly("lobbyCard"));
-$("#joinRoomBtn").addEventListener("click", clientConnectClicked);
-$("#joinCode").addEventListener("input", (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""); });
-$("#startDraftBtn").addEventListener("click", hostStartDraft);
-$("#resetBtn").addEventListener("click", resetEverything);
-$("#exportBtn").addEventListener("click", exportResults);
-$("#search").addEventListener("input", renderTeams);
-$("#copyCodeBtn").addEventListener("click", () => {
-  const code = $("#roomCodeDisplay").textContent;
-  navigator.clipboard?.writeText(code).then(() => toast("Room code copied."));
+async function refreshScores() {
+  try {
+    const md = await getJSON("data/matches.json");
+    if (JSON.stringify(md.matches) === JSON.stringify(state.matches)) return;
+    state.matches = md.matches;
+    state.updated = md.updated;
+    renderAll();
+  } catch (e) { /* transient network error — keep showing current data */ }
+}
+
+loadAll().catch(e => {
+  $("#leaderboard").innerHTML = `<div class="empty">Couldn't load data: ${esc(e.message)}</div>`;
+  $("#matches").innerHTML = "";
 });
-
-// Initial render
-showOnly("lobbyCard");
-setConnBadge(false, "offline");
+setInterval(refreshScores, 60_000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshScores(); });
 </script>
 </body>
 </html>

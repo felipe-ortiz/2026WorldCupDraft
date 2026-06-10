@@ -1,0 +1,83 @@
+{
+  "placeholder": true,
+  "players": [
+    {
+      "name": "Player 1",
+      "teams": [
+        "Spain",
+        "Colombia",
+        "Senegal",
+        "South Korea",
+        "Australia",
+        "DR Congo",
+        "Uzbekistan",
+        "New Zealand"
+      ]
+    },
+    {
+      "name": "Player 2",
+      "teams": [
+        "France",
+        "Belgium",
+        "Croatia",
+        "Austria",
+        "Algeria",
+        "Tunisia",
+        "Qatar",
+        "Haiti"
+      ]
+    },
+    {
+      "name": "Player 3",
+      "teams": [
+        "Argentina",
+        "Norway",
+        "Japan",
+        "Ecuador",
+        "Egypt",
+        "Scotland",
+        "Iraq",
+        "Curaçao"
+      ]
+    },
+    {
+      "name": "Player 4",
+      "teams": [
+        "England",
+        "Morocco",
+        "Mexico",
+        "Türkiye",
+        "Canada",
+        "Czechia",
+        "South Africa",
+        "Ghana"
+      ]
+    },
+    {
+      "name": "Player 5",
+      "teams": [
+        "Brazil",
+        "Netherlands",
+        "USA",
+        "Iran",
+        "Panama",
+        "Paraguay",
+        "Saudi Arabia",
+        "Cape Verde"
+      ]
+    },
+    {
+      "name": "Player 6",
+      "teams": [
+        "Portugal",
+        "Germany",
+        "Uruguay",
+        "Switzerland",
+        "Ivory Coast",
+        "Sweden",
+        "Jordan",
+        "Bosnia and Herzegovina"
+      ]
+    }
+  ]
+}
