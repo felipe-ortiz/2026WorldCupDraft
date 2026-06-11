@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-10T14:39:30.429Z",
+  "updated": "2026-06-11T04:28:13.804Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -10,7 +10,8 @@
       "home": "Mexico",
       "away": "South Africa",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537327
     },
     {
       "id": "KORvCZE",
@@ -21,7 +22,8 @@
       "home": "South Korea",
       "away": "Czechia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537328
     },
     {
       "id": "CANvBIH",
@@ -32,7 +34,8 @@
       "home": "Canada",
       "away": "Bosnia and Herzegovina",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537333
     },
     {
       "id": "USAvPAR",
@@ -43,7 +46,8 @@
       "home": "USA",
       "away": "Paraguay",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537345
     },
     {
       "id": "QATvSUI",
@@ -54,7 +58,8 @@
       "home": "Qatar",
       "away": "Switzerland",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537334
     },
     {
       "id": "BRAvMAR",
@@ -65,7 +70,8 @@
       "home": "Brazil",
       "away": "Morocco",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537339
     },
     {
       "id": "HAIvSCO",
@@ -76,7 +82,8 @@
       "home": "Haiti",
       "away": "Scotland",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537340
     },
     {
       "id": "AUSvTUR",
@@ -87,7 +94,8 @@
       "home": "Australia",
       "away": "Türkiye",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537346
     },
     {
       "id": "GERvCUW",
@@ -98,7 +106,8 @@
       "home": "Germany",
       "away": "Curaçao",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537351
     },
     {
       "id": "NEDvJPN",
@@ -109,7 +118,8 @@
       "home": "Netherlands",
       "away": "Japan",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537357
     },
     {
       "id": "CIVvECU",
@@ -120,7 +130,8 @@
       "home": "Ivory Coast",
       "away": "Ecuador",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537352
     },
     {
       "id": "SWEvTUN",
@@ -131,7 +142,8 @@
       "home": "Sweden",
       "away": "Tunisia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537358
     },
     {
       "id": "ESPvCPV",
@@ -142,7 +154,8 @@
       "home": "Spain",
       "away": "Cape Verde",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537369
     },
     {
       "id": "BELvEGY",
@@ -153,7 +166,8 @@
       "home": "Belgium",
       "away": "Egypt",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537363
     },
     {
       "id": "KSAvURU",
@@ -164,7 +178,8 @@
       "home": "Saudi Arabia",
       "away": "Uruguay",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537370
     },
     {
       "id": "IRNvNZL",
@@ -175,7 +190,8 @@
       "home": "Iran",
       "away": "New Zealand",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537364
     },
     {
       "id": "FRAvSEN",
@@ -186,7 +202,8 @@
       "home": "France",
       "away": "Senegal",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537391
     },
     {
       "id": "IRQvNOR",
@@ -197,7 +214,8 @@
       "home": "Iraq",
       "away": "Norway",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537392
     },
     {
       "id": "ARGvALG",
@@ -208,7 +226,8 @@
       "home": "Argentina",
       "away": "Algeria",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537397
     },
     {
       "id": "AUTvJOR",
@@ -219,7 +238,8 @@
       "home": "Austria",
       "away": "Jordan",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537398
     },
     {
       "id": "PORvCOD",
@@ -230,7 +250,8 @@
       "home": "Portugal",
       "away": "DR Congo",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537403
     },
     {
       "id": "ENGvCRO",
@@ -241,7 +262,8 @@
       "home": "England",
       "away": "Croatia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537409
     },
     {
       "id": "GHAvPAN",
@@ -252,7 +274,8 @@
       "home": "Ghana",
       "away": "Panama",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537410
     },
     {
       "id": "UZBvCOL",
@@ -263,7 +286,8 @@
       "home": "Uzbekistan",
       "away": "Colombia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537404
     },
     {
       "id": "CZEvRSA",
@@ -274,7 +298,8 @@
       "home": "Czechia",
       "away": "South Africa",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537329
     },
     {
       "id": "SUIvBIH",
@@ -285,7 +310,8 @@
       "home": "Switzerland",
       "away": "Bosnia and Herzegovina",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537335
     },
     {
       "id": "CANvQAT",
@@ -296,7 +322,8 @@
       "home": "Canada",
       "away": "Qatar",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537336
     },
     {
       "id": "MEXvKOR",
@@ -307,7 +334,8 @@
       "home": "Mexico",
       "away": "South Korea",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537330
     },
     {
       "id": "USAvAUS",
@@ -318,7 +346,8 @@
       "home": "USA",
       "away": "Australia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537348
     },
     {
       "id": "SCOvMAR",
@@ -329,7 +358,8 @@
       "home": "Scotland",
       "away": "Morocco",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537342
     },
     {
       "id": "BRAvHAI",
@@ -340,7 +370,8 @@
       "home": "Brazil",
       "away": "Haiti",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537341
     },
     {
       "id": "TURvPAR",
@@ -351,7 +382,8 @@
       "home": "Türkiye",
       "away": "Paraguay",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537347
     },
     {
       "id": "NEDvSWE",
@@ -362,7 +394,8 @@
       "home": "Netherlands",
       "away": "Sweden",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537359
     },
     {
       "id": "GERvCIV",
@@ -373,7 +406,8 @@
       "home": "Germany",
       "away": "Ivory Coast",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537353
     },
     {
       "id": "ECUvCUW",
@@ -384,7 +418,8 @@
       "home": "Ecuador",
       "away": "Curaçao",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537354
     },
     {
       "id": "TUNvJPN",
@@ -395,7 +430,8 @@
       "home": "Tunisia",
       "away": "Japan",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537360
     },
     {
       "id": "ESPvKSA",
@@ -406,7 +442,8 @@
       "home": "Spain",
       "away": "Saudi Arabia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537371
     },
     {
       "id": "BELvIRN",
@@ -417,7 +454,8 @@
       "home": "Belgium",
       "away": "Iran",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537365
     },
     {
       "id": "URUvCPV",
@@ -428,7 +466,8 @@
       "home": "Uruguay",
       "away": "Cape Verde",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537372
     },
     {
       "id": "NZLvEGY",
@@ -439,7 +478,8 @@
       "home": "New Zealand",
       "away": "Egypt",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537366
     },
     {
       "id": "ARGvAUT",
@@ -450,7 +490,8 @@
       "home": "Argentina",
       "away": "Austria",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537399
     },
     {
       "id": "FRAvIRQ",
@@ -461,7 +502,8 @@
       "home": "France",
       "away": "Iraq",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537393
     },
     {
       "id": "NORvSEN",
@@ -472,7 +514,8 @@
       "home": "Norway",
       "away": "Senegal",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537394
     },
     {
       "id": "JORvALG",
@@ -483,7 +526,8 @@
       "home": "Jordan",
       "away": "Algeria",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537400
     },
     {
       "id": "PORvUZB",
@@ -494,7 +538,8 @@
       "home": "Portugal",
       "away": "Uzbekistan",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537405
     },
     {
       "id": "ENGvGHA",
@@ -505,7 +550,8 @@
       "home": "England",
       "away": "Ghana",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537411
     },
     {
       "id": "PANvCRO",
@@ -516,7 +562,8 @@
       "home": "Panama",
       "away": "Croatia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537412
     },
     {
       "id": "COLvCOD",
@@ -527,7 +574,8 @@
       "home": "Colombia",
       "away": "DR Congo",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537406
     },
     {
       "id": "SUIvCAN",
@@ -538,7 +586,8 @@
       "home": "Switzerland",
       "away": "Canada",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537337
     },
     {
       "id": "BIHvQAT",
@@ -549,7 +598,8 @@
       "home": "Bosnia and Herzegovina",
       "away": "Qatar",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537338
     },
     {
       "id": "SCOvBRA",
@@ -560,7 +610,8 @@
       "home": "Scotland",
       "away": "Brazil",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537343
     },
     {
       "id": "MARvHAI",
@@ -571,7 +622,8 @@
       "home": "Morocco",
       "away": "Haiti",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537344
     },
     {
       "id": "CZEvMEX",
@@ -582,7 +634,8 @@
       "home": "Czechia",
       "away": "Mexico",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537331
     },
     {
       "id": "RSAvKOR",
@@ -593,7 +646,8 @@
       "home": "South Africa",
       "away": "South Korea",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537332
     },
     {
       "id": "CUWvCIV",
@@ -604,7 +658,8 @@
       "home": "Curaçao",
       "away": "Ivory Coast",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537356
     },
     {
       "id": "ECUvGER",
@@ -615,7 +670,8 @@
       "home": "Ecuador",
       "away": "Germany",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537355
     },
     {
       "id": "JPNvSWE",
@@ -626,7 +682,8 @@
       "home": "Japan",
       "away": "Sweden",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537362
     },
     {
       "id": "TUNvNED",
@@ -637,7 +694,8 @@
       "home": "Tunisia",
       "away": "Netherlands",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537361
     },
     {
       "id": "TURvUSA",
@@ -648,7 +706,8 @@
       "home": "Türkiye",
       "away": "USA",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537349
     },
     {
       "id": "PARvAUS",
@@ -659,7 +718,8 @@
       "home": "Paraguay",
       "away": "Australia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537350
     },
     {
       "id": "NORvFRA",
@@ -670,7 +730,8 @@
       "home": "Norway",
       "away": "France",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537395
     },
     {
       "id": "SENvIRQ",
@@ -681,7 +742,8 @@
       "home": "Senegal",
       "away": "Iraq",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537396
     },
     {
       "id": "CPVvKSA",
@@ -692,7 +754,8 @@
       "home": "Cape Verde",
       "away": "Saudi Arabia",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537374
     },
     {
       "id": "URUvESP",
@@ -703,7 +766,8 @@
       "home": "Uruguay",
       "away": "Spain",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537373
     },
     {
       "id": "EGYvIRN",
@@ -714,7 +778,8 @@
       "home": "Egypt",
       "away": "Iran",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537368
     },
     {
       "id": "NZLvBEL",
@@ -725,7 +790,8 @@
       "home": "New Zealand",
       "away": "Belgium",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537367
     },
     {
       "id": "PANvENG",
@@ -736,7 +802,8 @@
       "home": "Panama",
       "away": "England",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537413
     },
     {
       "id": "CROvGHA",
@@ -747,7 +814,8 @@
       "home": "Croatia",
       "away": "Ghana",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537414
     },
     {
       "id": "COLvPOR",
@@ -758,7 +826,8 @@
       "home": "Colombia",
       "away": "Portugal",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537407
     },
     {
       "id": "CODvUZB",
@@ -769,7 +838,8 @@
       "home": "DR Congo",
       "away": "Uzbekistan",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537408
     },
     {
       "id": "ALGvAUT",
@@ -780,7 +850,8 @@
       "home": "Algeria",
       "away": "Austria",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537402
     },
     {
       "id": "JORvARG",
@@ -791,7 +862,8 @@
       "home": "Jordan",
       "away": "Argentina",
       "status": "SCHEDULED",
-      "score": null
+      "score": null,
+      "fdId": 537401
     }
   ]
 }
