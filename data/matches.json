@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-11T21:51:19.288Z",
+  "updated": "2026-06-12T06:56:39.692Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -24,8 +24,11 @@
       "venue": "Guadalajara (Zapopan)",
       "home": "South Korea",
       "away": "Czechia",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 2,
+        "away": 1
+      },
       "fdId": 537328
     },
     {
