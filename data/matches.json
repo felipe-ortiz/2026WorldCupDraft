@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-12T06:56:39.692Z",
+  "updated": "2026-06-12T19:31:34.607Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -39,8 +39,11 @@
       "venue": "Toronto",
       "home": "Canada",
       "away": "Bosnia and Herzegovina",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537333
     },
     {
