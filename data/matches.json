@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-13T05:06:16.279Z",
+  "updated": "2026-06-13T19:57:17.827Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -69,8 +69,11 @@
       "venue": "San Francisco Bay Area (Santa Clara)",
       "home": "Qatar",
       "away": "Switzerland",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537334
     },
     {
