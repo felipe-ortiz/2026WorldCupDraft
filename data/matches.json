@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-12T21:20:45.876Z",
+  "updated": "2026-06-13T05:06:16.279Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -54,8 +54,11 @@
       "venue": "Los Angeles (Inglewood)",
       "home": "USA",
       "away": "Paraguay",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 4,
+        "away": 1
+      },
       "fdId": 537345
     },
     {
