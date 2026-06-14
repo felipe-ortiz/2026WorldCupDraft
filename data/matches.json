@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14T18:20:21.297Z",
+  "updated": "2026-06-14T20:07:24.446Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -129,9 +129,9 @@
       "venue": "Houston",
       "home": "Germany",
       "away": "Curaçao",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 4,
+        "home": 7,
         "away": 1
       },
       "fdId": 537351
@@ -144,8 +144,11 @@
       "venue": "Dallas (Arlington)",
       "home": "Netherlands",
       "away": "Japan",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537357
     },
     {
