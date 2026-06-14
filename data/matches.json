@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-13T23:49:08.981Z",
+  "updated": "2026-06-14T04:46:45.566Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -84,7 +84,7 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "home": "Brazil",
       "away": "Morocco",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 1,
         "away": 1
@@ -99,8 +99,11 @@
       "venue": "Boston (Foxborough)",
       "home": "Haiti",
       "away": "Scotland",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537340
     },
     {
@@ -111,8 +114,11 @@
       "venue": "Vancouver",
       "home": "Australia",
       "away": "Türkiye",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537346
     },
     {
