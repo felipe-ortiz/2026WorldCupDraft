@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14T08:43:20.221Z",
+  "updated": "2026-06-14T18:20:21.297Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -129,8 +129,11 @@
       "venue": "Houston",
       "home": "Germany",
       "away": "Curaçao",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 4,
+        "away": 1
+      },
       "fdId": 537351
     },
     {
