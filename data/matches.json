@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14T04:46:45.566Z",
+  "updated": "2026-06-14T08:43:20.221Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -114,9 +114,9 @@
       "venue": "Vancouver",
       "home": "Australia",
       "away": "Türkiye",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 1,
+        "home": 2,
         "away": 0
       },
       "fdId": 537346
