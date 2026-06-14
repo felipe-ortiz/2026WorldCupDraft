@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14T21:42:00.254Z",
+  "updated": "2026-06-14T22:53:47.783Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -144,10 +144,10 @@
       "venue": "Dallas (Arlington)",
       "home": "Netherlands",
       "away": "Japan",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 2,
-        "away": 1
+        "away": 2
       },
       "fdId": 537357
     },
