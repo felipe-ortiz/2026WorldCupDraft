@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-15T20:17:10.633Z",
+  "updated": "2026-06-15T22:34:56.413Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -204,9 +204,9 @@
       "venue": "Seattle",
       "home": "Belgium",
       "away": "Egypt",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 0,
+        "home": 1,
         "away": 1
       },
       "fdId": 537363
@@ -219,8 +219,11 @@
       "venue": "Miami (Miami Gardens)",
       "home": "Saudi Arabia",
       "away": "Uruguay",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537370
     },
     {
