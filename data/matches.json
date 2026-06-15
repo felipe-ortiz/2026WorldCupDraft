@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-15T16:33:45.547Z",
+  "updated": "2026-06-15T20:17:10.633Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -189,7 +189,7 @@
       "venue": "Atlanta",
       "home": "Spain",
       "away": "Cape Verde",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 0,
         "away": 0
@@ -204,8 +204,11 @@
       "venue": "Seattle",
       "home": "Belgium",
       "away": "Egypt",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537363
     },
     {
