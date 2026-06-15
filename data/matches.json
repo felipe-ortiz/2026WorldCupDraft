@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-15T05:40:08.771Z",
+  "updated": "2026-06-15T11:35:59.512Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -159,7 +159,7 @@
       "venue": "Philadelphia",
       "home": "Ivory Coast",
       "away": "Ecuador",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 1,
         "away": 0
