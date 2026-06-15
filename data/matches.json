@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-15T00:18:21.936Z",
+  "updated": "2026-06-15T05:40:08.771Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -160,7 +160,10 @@
       "home": "Ivory Coast",
       "away": "Ecuador",
       "status": "LIVE",
-      "score": null,
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537352
     },
     {
@@ -171,8 +174,11 @@
       "venue": "Monterrey (Guadalupe)",
       "home": "Sweden",
       "away": "Tunisia",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 5,
+        "away": 1
+      },
       "fdId": 537358
     },
     {
