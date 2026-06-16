@@ -2,9 +2,12 @@ name: Update scores
 
 on:
   schedule:
-    # Every 15 minutes during the group stage (June 11-27 local, last
-    # kickoffs land on June 28 UTC).
-    - cron: "*/15 * 11-28 6 *"
+    # Every 5 minutes during match hours of the group stage. Kickoffs run
+    # 16:00-23:30 UTC plus late ones at 00:00-04:00 UTC; a 04:00 kickoff
+    # finishes ~06:30 UTC, so poll hours 15-23 and 00-06 UTC and skip the
+    # dead 07:00-14:59 UTC window. Group stage is June 11-27 local; the
+    # last kickoffs land early on June 28 UTC.
+    - cron: "*/5 0-6,15-23 11-28 6 *"
   workflow_dispatch: {}
 
 permissions:
