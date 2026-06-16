@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16T21:07:49.665Z",
+  "updated": "2026-06-16T21:37:47.959Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -249,7 +249,7 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "home": "France",
       "away": "Senegal",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 3,
         "away": 1
