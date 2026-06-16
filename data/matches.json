@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16T21:37:47.959Z",
+  "updated": "2026-06-16T23:08:02.862Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -264,8 +264,11 @@
       "venue": "Boston (Foxborough)",
       "home": "Iraq",
       "away": "Norway",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 2
+      },
       "fdId": 537392
     },
     {
