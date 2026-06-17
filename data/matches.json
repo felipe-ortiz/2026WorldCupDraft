@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T21:48:26.852Z",
+  "updated": "2026-06-17T23:10:30.785Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -324,9 +324,9 @@
       "venue": "Dallas (Arlington)",
       "home": "England",
       "away": "Croatia",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 3,
+        "home": 4,
         "away": 2
       },
       "fdId": 537409
@@ -339,8 +339,11 @@
       "venue": "Toronto",
       "home": "Ghana",
       "away": "Panama",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537410
     },
     {
