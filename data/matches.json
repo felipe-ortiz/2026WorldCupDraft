@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T06:49:42.241Z",
+  "updated": "2026-06-17T17:47:26.176Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -309,8 +309,11 @@
       "venue": "Houston",
       "home": "Portugal",
       "away": "DR Congo",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537403
     },
     {
