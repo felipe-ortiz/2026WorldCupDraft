@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16T23:08:02.862Z",
+  "updated": "2026-06-17T01:39:28.828Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -264,10 +264,10 @@
       "venue": "Boston (Foxborough)",
       "home": "Iraq",
       "away": "Norway",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 1,
-        "away": 2
+        "away": 4
       },
       "fdId": 537392
     },
@@ -279,8 +279,11 @@
       "venue": "Kansas City",
       "home": "Argentina",
       "away": "Algeria",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537397
     },
     {
