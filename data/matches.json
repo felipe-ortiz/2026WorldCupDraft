@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T20:24:28.147Z",
+  "updated": "2026-06-18T22:29:02.187Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -384,8 +384,11 @@
       "venue": "Los Angeles (Inglewood)",
       "home": "Switzerland",
       "away": "Bosnia and Herzegovina",
-      "status": "LIVE",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 4,
+        "away": 1
+      },
       "fdId": 537335
     },
     {
@@ -396,8 +399,11 @@
       "venue": "Vancouver",
       "home": "Canada",
       "away": "Qatar",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537336
     },
     {
