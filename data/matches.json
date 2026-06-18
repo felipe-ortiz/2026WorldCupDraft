@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T17:57:01.709Z",
+  "updated": "2026-06-18T20:24:28.147Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -369,7 +369,7 @@
       "venue": "Atlanta",
       "home": "Czechia",
       "away": "South Africa",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 1,
         "away": 1
@@ -384,7 +384,7 @@
       "venue": "Los Angeles (Inglewood)",
       "home": "Switzerland",
       "away": "Bosnia and Herzegovina",
-      "status": "SCHEDULED",
+      "status": "LIVE",
       "score": null,
       "fdId": 537335
     },
