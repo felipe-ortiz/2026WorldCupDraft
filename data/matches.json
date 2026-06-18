@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T06:26:52.863Z",
+  "updated": "2026-06-18T17:57:01.709Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -339,7 +339,7 @@
       "venue": "Toronto",
       "home": "Ghana",
       "away": "Panama",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 1,
         "away": 0
@@ -369,8 +369,11 @@
       "venue": "Atlanta",
       "home": "Czechia",
       "away": "South Africa",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 1
+      },
       "fdId": 537329
     },
     {
