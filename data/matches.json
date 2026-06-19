@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T22:29:02.187Z",
+  "updated": "2026-06-19T00:10:55.136Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -399,9 +399,9 @@
       "venue": "Vancouver",
       "home": "Canada",
       "away": "Qatar",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 1,
+        "home": 6,
         "away": 0
       },
       "fdId": 537336
