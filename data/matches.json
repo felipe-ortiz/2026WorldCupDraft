@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T05:23:42.494Z",
+  "updated": "2026-06-19T19:10:21.287Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -429,8 +429,11 @@
       "venue": "Seattle",
       "home": "USA",
       "away": "Australia",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537348
     },
     {
