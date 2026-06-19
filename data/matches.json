@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T21:52:25.180Z",
+  "updated": "2026-06-19T22:41:10.877Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -444,8 +444,11 @@
       "venue": "Boston (Foxborough)",
       "home": "Scotland",
       "away": "Morocco",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537342
     },
     {
