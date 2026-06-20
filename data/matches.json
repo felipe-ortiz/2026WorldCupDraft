@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T06:12:39.969Z",
+  "updated": "2026-06-20T17:48:35.237Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -489,8 +489,11 @@
       "venue": "Houston",
       "home": "Netherlands",
       "away": "Sweden",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 2,
+        "away": 0
+      },
       "fdId": 537359
     },
     {
