@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T20:22:22.297Z",
+  "updated": "2026-06-20T21:43:52.671Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -506,8 +506,8 @@
       "away": "Ivory Coast",
       "status": "LIVE",
       "score": {
-        "home": 0,
-        "away": 0
+        "home": 1,
+        "away": 1
       },
       "fdId": 537353
     },
