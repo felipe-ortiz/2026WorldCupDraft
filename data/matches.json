@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T01:54:18.741Z",
+  "updated": "2026-06-20T06:12:39.969Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -459,7 +459,7 @@
       "venue": "Philadelphia",
       "home": "Brazil",
       "away": "Haiti",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 3,
         "away": 0
@@ -474,8 +474,11 @@
       "venue": "San Francisco Bay Area (Santa Clara)",
       "home": "Türkiye",
       "away": "Paraguay",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537347
     },
     {
