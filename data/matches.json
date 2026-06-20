@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T21:43:52.671Z",
+  "updated": "2026-06-20T22:50:11.173Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -504,9 +504,9 @@
       "venue": "Toronto",
       "home": "Germany",
       "away": "Ivory Coast",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 1,
+        "home": 2,
         "away": 1
       },
       "fdId": 537353
