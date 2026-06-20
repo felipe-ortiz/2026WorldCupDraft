@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T19:02:07.591Z",
+  "updated": "2026-06-20T20:22:22.297Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -489,7 +489,7 @@
       "venue": "Houston",
       "home": "Netherlands",
       "away": "Sweden",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 5,
         "away": 1
@@ -504,8 +504,11 @@
       "venue": "Toronto",
       "home": "Germany",
       "away": "Ivory Coast",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537353
     },
     {
