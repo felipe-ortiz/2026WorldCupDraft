@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T19:58:06.809Z",
+  "updated": "2026-06-21T21:15:50.499Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -551,7 +551,7 @@
       "away": "Saudi Arabia",
       "status": "FINISHED",
       "score": {
-        "home": 5,
+        "home": 4,
         "away": 0
       },
       "fdId": 537371
@@ -564,10 +564,10 @@
       "venue": "Los Angeles (Inglewood)",
       "home": "Belgium",
       "away": "Iran",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 0,
-        "away": 1
+        "away": 0
       },
       "fdId": 537365
     },
