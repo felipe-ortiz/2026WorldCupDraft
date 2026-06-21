@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T02:54:10.858Z",
+  "updated": "2026-06-21T07:26:44.271Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -534,8 +534,11 @@
       "venue": "Monterrey (Guadalupe)",
       "home": "Tunisia",
       "away": "Japan",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 0,
+        "away": 4
+      },
       "fdId": 537360
     },
     {
