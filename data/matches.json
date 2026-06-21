@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T07:26:44.271Z",
+  "updated": "2026-06-21T16:26:45.261Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -549,8 +549,11 @@
       "venue": "Atlanta",
       "home": "Spain",
       "away": "Saudi Arabia",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537371
     },
     {
