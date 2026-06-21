@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T22:36:46.970Z",
+  "updated": "2026-06-21T23:54:29.949Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -581,8 +581,8 @@
       "away": "Cape Verde",
       "status": "LIVE",
       "score": {
-        "home": 0,
-        "away": 1
+        "home": 2,
+        "away": 2
       },
       "fdId": 537372
     },
