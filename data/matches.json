@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21T21:15:50.499Z",
+  "updated": "2026-06-21T22:36:46.970Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -579,8 +579,11 @@
       "venue": "Miami (Miami Gardens)",
       "home": "Uruguay",
       "away": "Cape Verde",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537372
     },
     {
