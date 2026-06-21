@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T22:50:11.173Z",
+  "updated": "2026-06-21T02:54:10.858Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -519,8 +519,11 @@
       "venue": "Kansas City",
       "home": "Ecuador",
       "away": "Curaçao",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537354
     },
     {
