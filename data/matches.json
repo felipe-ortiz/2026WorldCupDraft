@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-22T08:53:26.282Z",
+  "updated": "2026-06-22T18:42:58.544Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -609,8 +609,11 @@
       "venue": "Dallas (Arlington)",
       "home": "Argentina",
       "away": "Austria",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537399
     },
     {
