@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T04:32:01.462Z",
+  "updated": "2026-06-23T08:05:06.682Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -654,10 +654,10 @@
       "venue": "San Francisco Bay Area (Santa Clara)",
       "home": "Jordan",
       "away": "Algeria",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 1,
-        "away": 0
+        "away": 2
       },
       "fdId": 537400
     },
