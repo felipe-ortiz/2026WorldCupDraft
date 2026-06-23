@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-22T21:25:59.853Z",
+  "updated": "2026-06-23T00:16:13.278Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -626,7 +626,7 @@
       "away": "Iraq",
       "status": "LIVE",
       "score": {
-        "home": 1,
+        "home": 2,
         "away": 0
       },
       "fdId": 537393
@@ -639,8 +639,11 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "home": "Norway",
       "away": "Senegal",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537394
     },
     {
