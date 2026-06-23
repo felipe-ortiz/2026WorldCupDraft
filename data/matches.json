@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T21:09:16.996Z",
+  "updated": "2026-06-23T22:36:35.137Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -684,7 +684,7 @@
       "venue": "Boston (Foxborough)",
       "home": "England",
       "away": "Ghana",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 0,
         "away": 0
