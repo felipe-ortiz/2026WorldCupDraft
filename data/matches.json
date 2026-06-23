@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T17:12:29.531Z",
+  "updated": "2026-06-23T19:19:28.422Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -669,9 +669,9 @@
       "venue": "Houston",
       "home": "Portugal",
       "away": "Uzbekistan",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 0,
+        "home": 5,
         "away": 0
       },
       "fdId": 537405
