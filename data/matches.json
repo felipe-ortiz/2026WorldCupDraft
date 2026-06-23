@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T22:36:35.137Z",
+  "updated": "2026-06-23T23:38:19.526Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -700,7 +700,10 @@
       "home": "Panama",
       "away": "Croatia",
       "status": "SCHEDULED",
-      "score": null,
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537412
     },
     {
