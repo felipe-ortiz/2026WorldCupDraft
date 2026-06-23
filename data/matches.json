@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T00:16:13.278Z",
+  "updated": "2026-06-23T04:32:01.462Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -624,9 +624,9 @@
       "venue": "Philadelphia",
       "home": "France",
       "away": "Iraq",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 2,
+        "home": 3,
         "away": 0
       },
       "fdId": 537393
@@ -639,10 +639,10 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "home": "Norway",
       "away": "Senegal",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 0,
-        "away": 0
+        "home": 3,
+        "away": 2
       },
       "fdId": 537394
     },
@@ -654,8 +654,11 @@
       "venue": "San Francisco Bay Area (Santa Clara)",
       "home": "Jordan",
       "away": "Algeria",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537400
     },
     {
