@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23T23:38:19.526Z",
+  "updated": "2026-06-24T01:29:12.847Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -699,10 +699,10 @@
       "venue": "Toronto",
       "home": "Panama",
       "away": "Croatia",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "score": {
         "home": 0,
-        "away": 0
+        "away": 1
       },
       "fdId": 537412
     },
