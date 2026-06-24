@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-24T01:29:12.847Z",
+  "updated": "2026-06-24T05:42:04.846Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -714,8 +714,11 @@
       "venue": "Guadalajara (Zapopan)",
       "home": "Colombia",
       "away": "DR Congo",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "FINISHED",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537406
     },
     {
