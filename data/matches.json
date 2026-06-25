@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T01:28:13.937Z",
+  "updated": "2026-06-25T05:42:15.461Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -789,10 +789,10 @@
       "venue": "Mexico City",
       "home": "Czechia",
       "away": "Mexico",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 0,
-        "away": 0
+        "away": 3
       },
       "fdId": 537331
     },
@@ -804,9 +804,9 @@
       "venue": "Monterrey (Guadalupe)",
       "home": "South Africa",
       "away": "South Korea",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 0,
+        "home": 1,
         "away": 0
       },
       "fdId": 537332
