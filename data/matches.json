@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T21:03:28.284Z",
+  "updated": "2026-06-25T22:40:43.141Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -819,10 +819,10 @@
       "venue": "Philadelphia",
       "home": "Curaçao",
       "away": "Ivory Coast",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 0,
-        "away": 1
+        "away": 2
       },
       "fdId": 537356
     },
@@ -834,9 +834,9 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "home": "Ecuador",
       "away": "Germany",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 1,
+        "home": 2,
         "away": 1
       },
       "fdId": 537355
