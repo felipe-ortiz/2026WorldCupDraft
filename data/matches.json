@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T22:40:43.141Z",
+  "updated": "2026-06-25T23:57:28.499Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -849,8 +849,11 @@
       "venue": "Dallas (Arlington)",
       "home": "Japan",
       "away": "Sweden",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537362
     },
     {
@@ -861,8 +864,11 @@
       "venue": "Kansas City",
       "home": "Tunisia",
       "away": "Netherlands",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 2
+      },
       "fdId": 537361
     },
     {
