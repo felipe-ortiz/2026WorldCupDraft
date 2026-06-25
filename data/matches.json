@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-24T23:15:16.943Z",
+  "updated": "2026-06-25T01:28:13.937Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -759,10 +759,10 @@
       "venue": "Miami (Miami Gardens)",
       "home": "Scotland",
       "away": "Brazil",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 0,
-        "away": 2
+        "away": 3
       },
       "fdId": 537343
     },
@@ -774,9 +774,9 @@
       "venue": "Atlanta",
       "home": "Morocco",
       "away": "Haiti",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 2,
+        "home": 4,
         "away": 2
       },
       "fdId": 537344
@@ -789,8 +789,11 @@
       "venue": "Mexico City",
       "home": "Czechia",
       "away": "Mexico",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537331
     },
     {
@@ -801,8 +804,11 @@
       "venue": "Monterrey (Guadalupe)",
       "home": "South Africa",
       "away": "South Korea",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537332
     },
     {
