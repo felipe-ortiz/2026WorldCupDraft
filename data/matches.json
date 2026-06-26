@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26T03:40:43.905Z",
+  "updated": "2026-06-26T07:37:20.895Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -879,9 +879,9 @@
       "venue": "Los Angeles (Inglewood)",
       "home": "Türkiye",
       "away": "USA",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 2,
+        "home": 3,
         "away": 2
       },
       "fdId": 537349
@@ -894,7 +894,7 @@
       "venue": "San Francisco Bay Area (Santa Clara)",
       "home": "Paraguay",
       "away": "Australia",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
         "home": 0,
         "away": 0
