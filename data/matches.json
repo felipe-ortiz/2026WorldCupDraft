@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T23:57:28.499Z",
+  "updated": "2026-06-26T03:40:43.905Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -849,10 +849,10 @@
       "venue": "Dallas (Arlington)",
       "home": "Japan",
       "away": "Sweden",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 0,
-        "away": 0
+        "home": 1,
+        "away": 1
       },
       "fdId": 537362
     },
@@ -864,10 +864,10 @@
       "venue": "Kansas City",
       "home": "Tunisia",
       "away": "Netherlands",
-      "status": "LIVE",
+      "status": "FINISHED",
       "score": {
-        "home": 0,
-        "away": 2
+        "home": 1,
+        "away": 3
       },
       "fdId": 537361
     },
@@ -879,8 +879,11 @@
       "venue": "Los Angeles (Inglewood)",
       "home": "Türkiye",
       "away": "USA",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 2,
+        "away": 2
+      },
       "fdId": 537349
     },
     {
@@ -891,8 +894,11 @@
       "venue": "San Francisco Bay Area (Santa Clara)",
       "home": "Paraguay",
       "away": "Australia",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537350
     },
     {
