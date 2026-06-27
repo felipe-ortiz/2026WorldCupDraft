@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26T23:53:03.087Z",
+  "updated": "2026-06-27T01:56:09.012Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -789,7 +789,7 @@
       "venue": "Mexico City",
       "home": "Czechia",
       "away": "Mexico",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "score": {
         "home": 0,
         "away": 3
@@ -804,7 +804,7 @@
       "venue": "Monterrey (Guadalupe)",
       "home": "South Africa",
       "away": "South Korea",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "score": {
         "home": 1,
         "away": 0
@@ -819,7 +819,7 @@
       "venue": "Philadelphia",
       "home": "Curaçao",
       "away": "Ivory Coast",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "score": {
         "home": 0,
         "away": 2
@@ -834,7 +834,7 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "home": "Ecuador",
       "away": "Germany",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "score": {
         "home": 2,
         "away": 1
@@ -849,7 +849,7 @@
       "venue": "Dallas (Arlington)",
       "home": "Japan",
       "away": "Sweden",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "score": {
         "home": 1,
         "away": 1
@@ -864,7 +864,7 @@
       "venue": "Kansas City",
       "home": "Tunisia",
       "away": "Netherlands",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "score": {
         "home": 1,
         "away": 3
@@ -939,8 +939,11 @@
       "venue": "Houston",
       "home": "Cape Verde",
       "away": "Saudi Arabia",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537374
     },
     {
@@ -951,8 +954,11 @@
       "venue": "Guadalajara (Zapopan)",
       "home": "Uruguay",
       "away": "Spain",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 1
+      },
       "fdId": 537373
     },
     {
