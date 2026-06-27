@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-27T05:51:11.404Z",
+  "updated": "2026-06-27T21:59:42.561Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -999,8 +999,11 @@
       "venue": "New York/New Jersey (East Rutherford)",
       "home": "Panama",
       "away": "England",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537413
     },
     {
@@ -1011,8 +1014,11 @@
       "venue": "Philadelphia",
       "home": "Croatia",
       "away": "Ghana",
-      "status": "SCHEDULED",
-      "score": null,
+      "status": "LIVE",
+      "score": {
+        "home": 1,
+        "away": 0
+      },
       "fdId": 537414
     },
     {
