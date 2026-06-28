@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-27T23:09:25.735Z",
+  "updated": "2026-06-28T00:13:49.641Z",
   "matches": [
     {
       "id": "MEXvRSA",
@@ -1030,7 +1030,10 @@
       "home": "Colombia",
       "away": "Portugal",
       "status": "SCHEDULED",
-      "score": null,
+      "score": {
+        "home": 0,
+        "away": 0
+      },
       "fdId": 537407
     },
     {
@@ -1042,7 +1045,10 @@
       "home": "DR Congo",
       "away": "Uzbekistan",
       "status": "SCHEDULED",
-      "score": null,
+      "score": {
+        "home": 1,
+        "away": 1
+      },
       "fdId": 537408
     },
     {
